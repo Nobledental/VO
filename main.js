@@ -94,6 +94,8 @@ const personaConfig = {
     },
     lead: {
       title: 'Decode your policy with a specialist',
+      subtitle: 'Upload a policy for a concierge summary and coverage checklist.',
+      responseTime: '<5 min',
       fields: [
         {
           label: 'Email or WhatsApp*',
@@ -119,103 +121,7 @@ const personaConfig = {
       ]
     },
     ai: {
-      subtitle: 'Ask HealthFlo to summarise your policy in plain language.',
-      prompts: [
-        'Summarise my policy (room rent, co-pay, PED)',
-        'List non-payables for my maternity cover',
-        'What documents do I need for planned surgery?'
-      ]
-    },
-    whatsappCTA:
-      'Hi, I’d like a 2-min summary of my policy (PDF attached). City: ____.',
-    packages: [
-      {
-        id: 'pkg_apollo_knee_chennai',
-        procedure: 'Total Knee Replacement (Unilateral)',
-        specialty: 'Orthopedics',
-        city: 'Chennai',
-        hospital: 'Apollo Hospitals, Greams Road',
-        image: 'https://images.healthflo.org/hospitals/apollo-chennai-knee.jpg',
-        lead_price_inr: 185000,
-        inclusions: ['OT & Anesthesia', 'Implant (standard)', '2 bed-days (twin)', 'Nursing', 'Pre-op labs'],
-        cashless_eligible: true
-      },
-      {
-        id: 'pkg_manipal_lsc_chole_blr',
-        procedure: 'Laparoscopic Cholecystectomy',
-        specialty: 'General Surgery',
-        city: 'Bengaluru',
-        hospital: 'Manipal Hospital, Old Airport Road',
-        image: 'https://images.healthflo.org/hospitals/manipal-blr-chole.jpg',
-        lead_price_inr: 68000,
-        inclusions: ['OT', 'Anesthesia', 'Surgeon fee', '1 bed-day (twin)', 'Basic meds'],
-        cashless_eligible: true
-      },
-      {
-        id: 'pkg_aster_normal_delivery_hyd',
-        procedure: 'Normal Delivery (Mother & Newborn)',
-        specialty: 'Obstetrics',
-        city: 'Hyderabad',
-        hospital: 'Aster Prime',
-        image: 'https://images.healthflo.org/hospitals/aster-hyd-obs.jpg',
-        lead_price_inr: 52000,
-        inclusions: ['Labor room', 'Nursing', 'Standard meds', '2 bed-days (general)'],
-        cashless_eligible: true
-      }
-    ]
-  },
-  hospital: {
-    label: 'Hospital',
-    heroIntro:
-      'Launch compliant cashless everywhere, run empanelment like a pipeline, and recover denials with forensic workflows.',
-    heroCTA: { label: 'Launch RCM Cockpit →', href: '#products' },
-    whatsapp: 'Hi, I want to enable compliant cashless for [dept/TPA]. Beds: ____.',
-    why: [
-      {
-        title: 'Clarity before care',
-        copy: 'Coverage decoders, package-first pricing, and consent-ready paperwork keep clinicians aligned.'
-      },
-      {
-        title: 'Velocity when it counts',
-        copy: 'AI-prepared pre-auths, same-day approvals, and pre-network cashless under compliant guardrails.'
-      },
-      {
-        title: 'Recovery & prevention',
-        copy: 'Denial forensics, resubmission templates, and cockpit heatmaps prevent leakage.'
-      }
-    ],
-    quote: {
-      text:
-        '“Cashless approvals moved from days to hours. The dashboard keeps finance and nursing in sync.”',
-      cite: '— RCM Head, 250-bed hospital, Chennai'
-    },
-    products: {
-      title: 'Revenue acceleration for hospitals',
-      subtitle: 'RCM intelligence, compliant cashless, and denial recovery in one cockpit.',
-      cards: [
-        {
-          title: 'Cashless Everywhere',
-          copy: 'Managed & compliant cashless with a 60-day runway post-empanelment and payer-ready kits.',
-          tag: 'Same-day %: 92',
-          cta: 'Enable now →',
-          href: '#lead',
-          image: 'https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-2.webp'
-        },
-        {
-          title: 'Empanelment desk',
-          copy: '20+ insurers & major TPAs with live trackers, SLA timers, and tariff governance.',
-          tag: 'Network expansion',
-          cta: 'Expand network →',
-          href: '#lead',
-          image: 'https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-8.webp'
-        },
-        {
-          title: 'Denial & recovery',
-          copy: 'Forensics, category playbooks, and recovery loops to reclaim underpayments.',
-          tag: 'Recovery rate: 98%',
-          cta: 'Recover revenue →',
-          href: '#lead',
-          image: 'https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-7.webp'
+@@ -219,50 +221,52 @@ const personaConfig = {
         },
         {
           title: 'RCM cockpit',
@@ -241,6 +147,8 @@ const personaConfig = {
     },
     lead: {
       title: 'Launch compliant cashless & RCM',
+      subtitle: 'RCM specialists respond with baseline scan templates and rollout guardrails.',
+      responseTime: '<30 min',
       fields: [
         { label: 'Name*', name: 'name', type: 'text', placeholder: 'Your name', required: true },
         { label: 'Work email*', name: 'email', type: 'email', placeholder: 'name@hospital.com', required: true },
@@ -266,50 +174,7 @@ const personaConfig = {
     whatsapp: 'Hi, pilot interest: focus cities __, target LOS __.',
     why: [
       {
-        title: 'Clarity before care',
-        copy: 'Tariff governance, package guardrails, and transparent inclusions so provider networks stay aligned.'
-      },
-      {
-        title: 'Velocity when it counts',
-        copy: 'Pre-auth intelligence, SLA tracking, and breach alerts keep claims predictable.'
-      },
-      {
-        title: 'Recovery & prevention',
-        copy: 'Denial pattern analytics and playbooks reduce leakages and improve loss ratios.'
-      }
-    ],
-    quote: {
-      text:
-        '“City cohorts and LOS tracking gave us real-time visibility. Loss ratio dropped 5.6 points in six months.”',
-      cite: '— VP Network Ops, national insurer'
-    },
-    products: {
-      title: 'Insurer growth console',
-      subtitle: 'Distribution nudges, network governance, and loss-ratio analytics in one view.',
-      cards: [
-        {
-          title: 'Distribution engine',
-          copy: 'City cohorts, verified funnels, and quote→bind nudges for targeted growth.',
-          tag: 'Channel ROAS ↑',
-          cta: 'Launch pilot →',
-          href: '#lead',
-          image: 'https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-4.webp'
-        },
-        {
-          title: 'Network hospital ops',
-          copy: 'Empanelment SLAs, tariff governance, and TAT visibility at every node.',
-          tag: 'TAT breach 3.4%',
-          cta: 'See network graph →',
-          href: '#lead',
-          image: 'https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-8.webp'
-        },
-        {
-          title: 'Packages & pricing',
-          copy: 'Standard catalogs, city-tier guardrails, and approval trails for compliance.',
-          tag: 'Guardrails',
-          cta: 'Explore packages →',
-          href: '#lead',
-          image: 'https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-5.webp'
+@@ -313,50 +317,52 @@ const personaConfig = {
         },
         {
           title: 'Loss-ratio analytics',
@@ -335,6 +200,8 @@ const personaConfig = {
     },
     lead: {
       title: 'Co-design your insurer pilot',
+      subtitle: 'Pilot desk reverts with timelines, cohort benchmarks, and integration plans.',
+      responseTime: '<45 min',
       fields: [
         { label: 'Company*', name: 'company', type: 'text', placeholder: 'Insurer name', required: true },
         { label: 'Work email*', name: 'email', type: 'email', placeholder: 'name@insurer.com', required: true },
@@ -360,49 +227,7 @@ const personaConfig = {
     whatsapp: 'Hi, we’re {headcount} and exploring plan design for {go-live}.',
     why: [
       {
-        title: 'Clarity before care',
-        copy: 'Plan modeling with inclusions/exclusions spelled out before you take it to leadership.'
-      },
-      {
-        title: 'Velocity when it counts',
-        copy: 'Same-day e-cards and cashless helpdesk to prevent shortfalls during admissions.'
-      },
-      {
-        title: 'Recovery & prevention',
-        copy: 'Utilization analytics, top claim categories, and SLA tracking keep costs predictable.'
-      }
-    ],
-    quote: {
-      text: '“E-cards in minutes. Employees actually used benefits, and HR finally had clean utilization data.”',
-      cite: '— HR Lead, 1,200 staff, Bengaluru'
-    },
-    products: {
-      title: 'Corporate healthcare your team actually uses',
-      subtitle: 'Plan design, enrollment, cashless helpdesk, and analytics in one place.',
-      cards: [
-        {
-          title: 'Plan design',
-          copy: 'Model benefits by census & budget with maternity, OPD, and parent riders in clicks.',
-          tag: 'Benefits modeling',
-          cta: 'Design my plan →',
-          href: '#pricing',
-          image: 'https://storage.googleapis.com/dev_resources_voka_io_303011/common/university-computers.webp'
-        },
-        {
-          title: 'Seamless enrollment',
-          copy: 'Bulk import employees and issue e-cards in minutes with automation.',
-          tag: 'E-cards: 1.3h',
-          cta: 'Onboard fast →',
-          href: '#lead',
-          image: 'https://storage.googleapis.com/dev_resources_voka_io_303011/common/guide-1.webp'
-        },
-        {
-          title: 'Cashless helpdesk',
-          copy: 'Live pre-auth guidance prevents shortfalls and manages hospital coordination.',
-          tag: 'Helpdesk',
-          cta: 'Protect employees →',
-          href: '#lead',
-          image: 'https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-6.webp'
+@@ -406,50 +412,52 @@ const personaConfig = {
         },
         {
           title: 'HR analytics',
@@ -428,6 +253,8 @@ const personaConfig = {
     },
     lead: {
       title: 'Design the plan your team will use',
+      subtitle: 'Benefits architects share plan comparisons and go-live playbooks fast.',
+      responseTime: '<15 min',
       fields: [
         {
           label: 'Headcount band*',
@@ -453,14 +280,7 @@ const personaConfig = {
       ]
     },
     ai: {
-      subtitle: 'Ask HealthFlo to highlight benefits usage and anomalies.',
-      prompts: [
-        'Show utilization anomalies this month',
-        'Which claims drove the spike in OPD?',
-        'Send me top hospitals by employee NPS'
-      ]
-    },
-    whatsappCTA: 'Hi, we’re {headcount} and exploring plan design for {go-live}.',
+@@ -464,141 +472,214 @@ const personaConfig = {
     packages: []
   }
 };
@@ -486,6 +306,8 @@ const pricingCTA = $('[data-pricing-cta]');
 const leadTitle = $('[data-lead-title]');
 const leadFields = $('[data-lead-fields]');
 const leadForm = $('[data-lead-form]');
+const leadSubtitle = $('[data-lead-subtitle]');
+const responseTimeEl = $('[data-response-time]');
 const aiSubtitle = $('[data-ai-subtitle]');
 const aiPrompts = $('[data-ai-prompts]');
 const aiModal = $('[data-ai-modal]');
@@ -494,8 +316,27 @@ const aiCloseEls = $$('[data-ai-close]');
 const siteHeader = $('.site-header');
 const nav = $('.primary-nav');
 const navToggle = $('.nav-toggle');
+const stickyLead = $('.sticky-lead');
+const stickyToggle = $('.sticky-toggle');
+const packageControls = $('[data-package-controls]');
+const packageCityFilter = $('[data-package-filter="city"]');
+const packageSpecialtyFilter = $('[data-package-filter="specialty"]');
+const packageCashlessFilter = $('[data-package-filter="cashless"]');
+const packageResetButton = $('[data-package-reset]');
+const installBanner = $('[data-install-banner]');
+const installButton = $('[data-install-button]');
+const installDismiss = $('[data-install-dismiss]');
+const devicePreview = $('[data-device-preview]');
+const experienceArticles = $$('.experience-grid article');
+const actionCards = $$('.action-card');
+const devicePreviewPanels = devicePreview ? $$('[data-device-panel]', devicePreview) : [];
+const devicePreviewTabs = devicePreview ? $$('[data-device-target]', devicePreview) : [];
 
 let currentPersona = 'patient';
+let deferredInstallPrompt = null;
+let availablePackages = [];
+const packageFilterState = { city: 'all', specialty: 'all', cashless: false };
+let installPromptDismissed = false;
 
 const renderWhy = (config) => {
   if (!whyGrid) return;
@@ -544,39 +385,91 @@ const renderProducts = (config) => {
 const formatINR = (value) =>
   `₹${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
 
+const resetPackageFiltersState = (syncDom = true) => {
+  packageFilterState.city = 'all';
+  packageFilterState.specialty = 'all';
+  packageFilterState.cashless = false;
+  if (syncDom) {
+    if (packageCityFilter) packageCityFilter.value = 'all';
+    if (packageSpecialtyFilter) packageSpecialtyFilter.value = 'all';
+    if (packageCashlessFilter) packageCashlessFilter.checked = false;
+  }
+};
+
+const populatePackageFilters = (packages) => {
+  if (!packageCityFilter || !packageSpecialtyFilter) return;
+  const uniqueValues = (key) => [...new Set(packages.map((pkg) => pkg[key]))].sort();
+  const buildOptions = (values, label) =>
+    ['<option value="all">' + label + '</option>', ...values.map((value) => `<option value="${value}">${value}</option>`)].join('');
+  packageCityFilter.innerHTML = buildOptions(uniqueValues('city'), 'All cities');
+  packageSpecialtyFilter.innerHTML = buildOptions(uniqueValues('specialty'), 'All specialties');
+  packageCityFilter.value = packageFilterState.city;
+  packageSpecialtyFilter.value = packageFilterState.specialty;
+  if (packageCashlessFilter) packageCashlessFilter.checked = packageFilterState.cashless;
+};
+
+const filterPackages = () =>
+  availablePackages.filter((pkg) => {
+    if (packageFilterState.city !== 'all' && pkg.city !== packageFilterState.city) return false;
+    if (packageFilterState.specialty !== 'all' && pkg.specialty !== packageFilterState.specialty) return false;
+    if (packageFilterState.cashless && !pkg.cashless_eligible) return false;
+    return true;
+  });
+
+const drawPackages = () => {
+  if (!packageGrid) return;
+  if (!availablePackages.length) {
+    packageGrid.innerHTML = '';
+    return;
+  }
+  const filtered = filterPackages();
+  if (!filtered.length) {
+    packageGrid.innerHTML =
+      '<p class="packages-empty">No packages match your filters yet. Reset to explore all NABH partner bundles.</p>';
+    return;
+  }
+  packageGrid.innerHTML = filtered
+    .map(
+      (pkg) => `
+        <article class="package-card will-reveal">
+          <img src="${pkg.image}" alt="${pkg.hospital} — ${pkg.procedure}" loading="lazy" />
+          <div class="package-body">
+            <span class="badge-cashless">${pkg.cashless_eligible ? 'Cashless eligible' : 'Reimbursement only'}</span>
+            <h3>${pkg.procedure}</h3>
+            <div class="package-meta">
+              <span>${pkg.hospital}</span>
+              <span>${pkg.city} · ${pkg.specialty}</span>
+              <span class="package-price">From ${formatINR(pkg.lead_price_inr)}</span>
+            </div>
+            <div class="package-includes">Includes: ${pkg.inclusions.slice(0, 3).join(', ')}${
+              pkg.inclusions.length > 3 ? ', …' : ''
+            }</div>
+            <a class="btn-link" href="#lead" data-track="cta" data-track-label="package_${pkg.id}">Check eligibility →</a>
+          </div>
+        </article>
+      `
+    )
+    .join('');
+  observeReveal($$('.package-card', packageGrid));
+};
+
 const renderPackages = (config) => {
   if (!packagesSection) return;
-  if (config.packages && config.packages.length) {
-    packagesSection.hidden = false;
-    packagesSection.setAttribute('aria-hidden', 'false');
-    packageGrid.innerHTML = config.packages
-      .map(
-        (pkg) => `
-          <article class="package-card will-reveal">
-            <img src="${pkg.image}" alt="${pkg.hospital} — ${pkg.procedure}" loading="lazy" />
-            <div class="package-body">
-              <span class="badge-cashless">${pkg.cashless_eligible ? 'Cashless eligible' : 'Reimbursement only'}</span>
-              <h3>${pkg.procedure}</h3>
-              <div class="package-meta">
-                <span>${pkg.hospital}</span>
-                <span>${pkg.city} · ${pkg.specialty}</span>
-                <span class="package-price">From ${formatINR(pkg.lead_price_inr)}</span>
-              </div>
-              <div class="package-includes">Includes: ${pkg.inclusions.slice(0, 3).join(', ')}${
-          pkg.inclusions.length > 3 ? ', …' : ''
-        }</div>
-              <a class="btn-link" href="#lead" data-track="cta" data-track-label="package_${pkg.id}">Check eligibility →</a>
-            </div>
-          </article>
-        `
-      )
-      .join('');
-    observeReveal($$('.package-card', packageGrid));
-  } else {
-    packagesSection.hidden = true;
-    packagesSection.setAttribute('aria-hidden', 'true');
-    packageGrid.innerHTML = '';
+  availablePackages = Array.isArray(config.packages) ? config.packages : [];
+  const hasPackages = availablePackages.length > 0;
+  packagesSection.hidden = !hasPackages;
+  packagesSection.setAttribute('aria-hidden', String(!hasPackages));
+  if (packageControls) {
+    packageControls.hidden = !hasPackages;
+    packageControls.setAttribute('aria-hidden', String(!hasPackages));
   }
+  if (!hasPackages) {
+    packageGrid.innerHTML = '';
+    return;
+  }
+  resetPackageFiltersState(false);
+  populatePackageFilters(availablePackages);
+  drawPackages();
 };
 
 const renderHow = (config) => {
@@ -602,9 +495,7 @@ const howCopy = (step, persona) => {
       'Launch cashless / empanelment': 'AI-prepared packs, SLA timers, and tariff governance keep teams compliant.',
       'Denial prevention + cockpit': 'Exception heatmaps and recovery loops close the gap on underpayments.'
     },
-    insurer: {
-      'Pick focus cities': 'Select high-impact city cohorts, attach baseline LOS, and set pilot KPIs.',
-      'Align networks & packages': 'Standard catalogs, guardrails, and approvals rolled out via provider console.',
+@@ -608,52 +689,64 @@ const howCopy = (step, persona) => {
       'Run loss-ratio analytics': 'Monitor LOS, denial patterns, and channel ROAS with automated alerts.'
     },
     employer: {
@@ -630,8 +521,20 @@ const renderPricing = (config) => {
 };
 
 const renderLeadForm = (config) => {
-  if (!leadFields) return;
-  leadTitle.textContent = config.lead.title;
+  if (!leadFields || !config.lead) return;
+  if (leadTitle) leadTitle.textContent = config.lead.title;
+  if (leadSubtitle) {
+    if (config.lead.subtitle) {
+      leadSubtitle.textContent = config.lead.subtitle;
+      leadSubtitle.hidden = false;
+    } else {
+      leadSubtitle.textContent = '';
+      leadSubtitle.hidden = true;
+    }
+  }
+  if (responseTimeEl) {
+    responseTimeEl.textContent = config.lead.responseTime || '<10 min';
+  }
   leadFields.innerHTML = config.lead.fields
     .map((field) => {
       if (field.type === 'select') {
@@ -657,311 +560,7 @@ const renderLeadForm = (config) => {
       }
       return `
         <label>
-          <span>${field.label}</span>
-          <input type="${field.type}" name="${field.name}" placeholder="${field.placeholder || ''}" ${
-        field.required ? 'required' : ''
-      } />
-        </label>
-      `;
-    })
-    .join('');
-  observeReveal([leadForm]);
-  initLeadFieldListeners();
-};
-
-const renderAI = (config) => {
-  if (aiSubtitle) aiSubtitle.textContent = config.ai.subtitle;
-  if (aiPrompts)
-    aiPrompts.innerHTML = config.ai.prompts
-      .map(
-        (prompt) =>
-          `<button type="button" class="ai-prompt" data-prompt="${prompt.replace(/"/g, '&quot;')}">${prompt}</button>`
-      )
-      .join('');
-};
-
-const updateWhatsAppLinks = (config) => {
-  const encoded = encodeURIComponent(config.whatsappCTA);
-  heroProofLinks.forEach((link) => {
-    const base = 'https://wa.me/919940207670';
-    link.href = `${base}?text=${encoded}`;
-  });
-};
-
-const applyPersona = (persona, trackEvent = false) => {
-  const config = personaConfig[persona];
-  if (!config) return;
-  currentPersona = persona;
-  body.dataset.persona = persona;
-  personaButtons.forEach((btn) => {
-    const isActive = btn.dataset.persona === persona;
-    btn.classList.toggle('is-active', isActive);
-    btn.setAttribute('aria-pressed', String(isActive));
-  });
-  if (heroIntroEl) heroIntroEl.textContent = config.heroIntro;
-  if (heroCTA) {
-    heroCTA.textContent = config.heroCTA.label;
-    heroCTA.href = config.heroCTA.href;
-    heroCTA.setAttribute('data-track-label', `hero_primary_${persona}`);
-  }
-  renderWhy(config);
-  renderQuote(config);
-  renderProducts(config);
-  renderPackages(config);
-  renderHow(config);
-  if (riskLine) riskLine.textContent = config.riskLine;
-  renderPricing(config);
-  renderLeadForm(config);
-  renderAI(config);
-  updateWhatsAppLinks(config);
-  localStorage.setItem('healthflo_persona', persona);
-  if (trackEvent) track('persona_selected', { role: persona });
-  togglePersonaSections(persona);
-};
-
-const togglePersonaSections = (persona) => {
-  $$('[data-persona-section]').forEach((section) => {
-    const roles = section.dataset.personaSection.split(/[,\s]+/).filter(Boolean);
-    const visible = roles.includes(persona);
-    section.hidden = !visible;
-    section.setAttribute('aria-hidden', String(!visible));
-  });
-};
-
-const initLeadFieldListeners = () => {
-  const fileInput = leadFields.querySelector('input[type="file"]');
-  if (fileInput) {
-    fileInput.addEventListener('change', (e) => {
-      const file = e.target.files?.[0];
-      if (file) {
-        track('policy_uploaded', {
-          role: currentPersona,
-          size_kb: Math.round(file.size / 1024),
-          parse_success: true
-        });
-      }
-    });
-  }
-};
-
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.2 }
-);
-
-const observeReveal = (nodes) => {
-  nodes.forEach((node) => revealObserver.observe(node));
-};
-
-const initHeader = () => {
-  const onScroll = () => {
-    if (!siteHeader) return;
-    const y = window.scrollY || 0;
-    siteHeader.classList.toggle('is-scrolled', y > 16);
-  };
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
-};
-
-const initNav = () => {
-  if (!nav || !navToggle) return;
-  const toggleNav = () => {
-    const isOpen = nav.classList.toggle('is-open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-  };
-  navToggle.addEventListener('click', toggleNav);
-  $$('.primary-nav a').forEach((link) =>
-    link.addEventListener('click', () => nav.classList.remove('is-open'))
-  );
-};
-
-const initTheme = () => {
-  const stored = localStorage.getItem('healthflo_theme');
-  if (stored && ['white', 'dark', 'matte', 'cosmic'].includes(stored)) {
-    body.dataset.theme = stored;
-    themeButtons.forEach((btn) => {
-      btn.classList.toggle('is-active', btn.dataset.themeTarget === stored);
-      btn.setAttribute('aria-checked', String(btn.dataset.themeTarget === stored));
-    });
-  }
-  themeButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const theme = btn.dataset.themeTarget;
-      body.dataset.theme = theme;
-      themeButtons.forEach((b) => {
-        const active = b === btn;
-        b.classList.toggle('is-active', active);
-        b.setAttribute('aria-checked', String(active));
-      });
-      localStorage.setItem('healthflo_theme', theme);
-      track('theme_changed', { theme });
-    });
-  });
-};
-
-const initPersonaSelector = () => {
-  personaButtons.forEach((btn) =>
-    btn.addEventListener('click', () => applyPersona(btn.dataset.persona, true))
-  );
-};
-
-const initLeadForm = () => {
-  if (!leadForm) return;
-  leadForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(leadForm);
-    const fields = {};
-    formData.forEach((value, key) => {
-      fields[key] = value instanceof File ? value.name : value;
-    });
-    track('lead_submitted', { role: currentPersona, fields });
-    switch (currentPersona) {
-      case 'hospital':
-        track('hospital_demo_booked', fields);
-        break;
-      case 'insurer':
-        track('insurer_pilot_requested', fields);
-        break;
-      case 'employer':
-        track('employer_plan_requested', fields);
-        break;
-      default:
-        track('patient_decode_requested', fields);
-    }
-    leadForm.reset();
-    showToast('Thanks! A specialist will reach out shortly.');
-  });
-};
-
-const showToast = (message) => {
-  let toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.textContent = message;
-  document.body.appendChild(toast);
-  requestAnimationFrame(() => toast.classList.add('is-visible'));
-  setTimeout(() => {
-    toast.classList.remove('is-visible');
-    setTimeout(() => toast.remove(), 400);
-  }, 3200);
-};
-
-const initAI = () => {
-  aiOpeners.forEach((btn) =>
-    btn.addEventListener('click', () => {
-      aiModal.classList.add('is-open');
-      aiModal.setAttribute('aria-hidden', 'false');
-    })
-  );
-  aiCloseEls.forEach((el) =>
-    el.addEventListener('click', closeAIModal)
-  );
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeAIModal();
-  });
-  aiPrompts?.addEventListener('click', (e) => {
-    const btn = e.target.closest('.ai-prompt');
-    if (!btn) return;
-    const prompt = btn.dataset.prompt;
-    track('ai_prompt_selected', { role: currentPersona, prompt });
-    showToast(`Prompt sent: ${prompt}`);
-  });
-};
-
-const closeAIModal = () => {
-  if (!aiModal) return;
-  aiModal.classList.remove('is-open');
-  aiModal.setAttribute('aria-hidden', 'true');
-};
-
-const initTracking = () => {
-  document.addEventListener('click', (event) => {
-    const target = event.target.closest('[data-track]');
-    if (!target) return;
-    const label = target.getAttribute('data-track-label');
-    const role = currentPersona;
-    track(target.dataset.track + '_clicked', { role, cta_label: label });
-  });
-};
-
-const initWhatsAppOptin = () => {
-  if (!leadForm) return;
-  const checkbox = leadForm.querySelector('input[name="whatsapp_optin"]');
-  if (!checkbox) return;
-  checkbox.addEventListener('change', (e) => {
-    track('whatsapp_optin', { role: currentPersona, opted_in: e.target.checked });
-  });
-};
-
-const initHeroAnimation = () => {
-  if (!heroCanvas || prefersReducedMotion()) {
-    if (heroCanvas) {
-      heroCanvas.style.background = 'linear-gradient(135deg, rgba(37,99,235,0.25), transparent)';
-    }
-    return;
-  }
-  heroCtx = heroCanvas.getContext('2d');
-  const resize = () => {
-    const dpr = window.devicePixelRatio || 1;
-    const { clientWidth, clientHeight } = heroCanvas;
-    heroCanvas.width = clientWidth * dpr;
-    heroCanvas.height = clientHeight * dpr;
-    heroCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    createParticles(clientWidth, clientHeight);
-  };
-  const createParticles = (width, height) => {
-    const count = 80;
-    heroParticles = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: Math.random() * 2 + 0.6,
-      speed: Math.random() * 0.35 + 0.15,
-      angle: Math.random() * Math.PI * 2,
-      alpha: Math.random() * 0.5 + 0.25
-    }));
-  };
-  const draw = () => {
-    const { clientWidth: width, clientHeight: height } = heroCanvas;
-    heroCtx.clearRect(0, 0, width, height);
-    const gradient = heroCtx.createRadialGradient(
-      width * 0.2 + heroPointer.x * 0.05,
-      height * 0.3 + heroPointer.y * 0.05,
-      20,
-      width * 0.5,
-      height * 0.6,
-      Math.max(width, height)
-    );
-    gradient.addColorStop(0, 'rgba(37,99,235,0.35)');
-    gradient.addColorStop(1, 'rgba(37,99,235,0)');
-    heroCtx.fillStyle = gradient;
-    heroCtx.fillRect(0, 0, width, height);
-
-    heroCtx.strokeStyle = 'rgba(37, 99, 235, 0.2)';
-    heroCtx.lineWidth = 1;
-    heroCtx.beginPath();
-    heroCtx.ellipse(width * 0.6, height * 0.5, width * 0.35, height * 0.18, 0, 0, Math.PI * 2);
-    heroCtx.stroke();
-
-    heroParticles.forEach((p) => {
-      p.x += Math.cos(p.angle) * p.speed + heroPointer.x * 0.0005;
-      p.y += Math.sin(p.angle) * p.speed + heroPointer.y * 0.0005;
-      p.angle += 0.0025;
-      if (p.x > width) p.x = 0;
-      if (p.x < 0) p.x = width;
-      if (p.y > height) p.y = 0;
-      if (p.y < 0) p.y = height;
-      heroCtx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
-      heroCtx.beginPath();
-      heroCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      heroCtx.fill();
-    });
-
+@@ -965,50 +1058,221 @@ const initHeroAnimation = () => {
     heroAnimationId = requestAnimationFrame(draw);
   };
   resize();
@@ -987,13 +586,175 @@ const initPersonaFromSource = () => {
 };
 
 const initStickyToggle = () => {
-  const toggle = $('.sticky-toggle');
-  if (!toggle) return;
-  toggle.addEventListener('click', () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!expanded));
-    leadForm.classList.toggle('is-collapsed', expanded);
+  if (!stickyLead || !stickyToggle || !leadForm) return;
+  const setState = (expanded) => {
+    stickyLead.classList.toggle('is-collapsed', !expanded);
+    leadForm.classList.toggle('is-collapsed', !expanded);
+    stickyToggle.setAttribute('aria-expanded', String(expanded));
+    stickyToggle.setAttribute(
+      'aria-label',
+      expanded ? 'Collapse conversation panel' : 'Expand conversation panel'
+    );
+  };
+  setState(false);
+  stickyToggle.addEventListener('click', () => {
+    const expanded = stickyToggle.getAttribute('aria-expanded') === 'true';
+    setState(!expanded);
+    track('lead_panel_toggled', { expanded: !expanded, role: currentPersona });
   });
+};
+
+const initPackageControls = () => {
+  if (!packageControls) return;
+  packageControls.addEventListener('change', (event) => {
+    const target = event.target;
+    if (target === packageCityFilter) {
+      packageFilterState.city = target.value;
+      track('package_filter_changed', { filter: 'city', value: target.value, role: currentPersona });
+    } else if (target === packageSpecialtyFilter) {
+      packageFilterState.specialty = target.value;
+      track('package_filter_changed', { filter: 'specialty', value: target.value, role: currentPersona });
+    } else if (target === packageCashlessFilter) {
+      packageFilterState.cashless = target.checked;
+      track('package_filter_changed', { filter: 'cashless', value: target.checked, role: currentPersona });
+    } else {
+      return;
+    }
+    drawPackages();
+  });
+  packageResetButton?.addEventListener('click', () => {
+    resetPackageFiltersState();
+    populatePackageFilters(availablePackages);
+    drawPackages();
+    track('package_filter_reset', { role: currentPersona });
+  });
+};
+
+const initDevicePreview = () => {
+  if (!devicePreview || !devicePreviewTabs.length || !devicePreviewPanels.length) return;
+  const activate = (target) => {
+    const fallback = devicePreviewTabs[0]?.dataset.deviceTarget;
+    const selected = target || fallback;
+    if (!selected) return;
+    devicePreviewTabs.forEach((tab) => {
+      const isActive = tab.dataset.deviceTarget === selected;
+      tab.classList.toggle('is-active', isActive);
+      tab.setAttribute('aria-selected', String(isActive));
+      tab.setAttribute('tabindex', isActive ? '0' : '-1');
+    });
+    devicePreviewPanels.forEach((panel) => {
+      const isActive = panel.dataset.devicePanel === selected;
+      panel.classList.toggle('is-active', isActive);
+      panel.setAttribute('aria-hidden', String(!isActive));
+    });
+  };
+  const initial = devicePreviewTabs.find((tab) => tab.classList.contains('is-active'));
+  activate(initial?.dataset.deviceTarget);
+  devicePreviewTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      activate(tab.dataset.deviceTarget);
+      track('device_preview_changed', { target: tab.dataset.deviceTarget, role: currentPersona });
+    });
+    tab.addEventListener('keydown', (event) => {
+      const index = devicePreviewTabs.indexOf(tab);
+      if (['ArrowRight', 'ArrowDown'].includes(event.key)) {
+        event.preventDefault();
+        const nextTab = devicePreviewTabs[(index + 1) % devicePreviewTabs.length];
+        activate(nextTab.dataset.deviceTarget);
+        nextTab.focus();
+      } else if (['ArrowLeft', 'ArrowUp'].includes(event.key)) {
+        event.preventDefault();
+        const prevTab = devicePreviewTabs[(index - 1 + devicePreviewTabs.length) % devicePreviewTabs.length];
+        activate(prevTab.dataset.deviceTarget);
+        prevTab.focus();
+      } else if (event.key === 'Home') {
+        event.preventDefault();
+        const first = devicePreviewTabs[0];
+        activate(first.dataset.deviceTarget);
+        first.focus();
+      } else if (event.key === 'End') {
+        event.preventDefault();
+        const last = devicePreviewTabs[devicePreviewTabs.length - 1];
+        activate(last.dataset.deviceTarget);
+        last.focus();
+      }
+    });
+  });
+};
+
+const showInstallPromptBanner = () => {
+  if (!installBanner || installPromptDismissed) return;
+  installBanner.hidden = false;
+  installBanner.setAttribute('aria-hidden', 'false');
+};
+
+const hideInstallPromptBanner = () => {
+  if (!installBanner) return;
+  installBanner.hidden = true;
+  installBanner.setAttribute('aria-hidden', 'true');
+};
+
+const initPWA = () => {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', async () => {
+      try {
+        const registration = await navigator.serviceWorker.register('sw.js');
+        track('service_worker_registered', { scope: registration.scope });
+      } catch (error) {
+        console.error('Service worker registration failed', error);
+        track('service_worker_error', { message: error.message });
+      }
+    });
+  }
+
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    showInstallPromptBanner();
+    track('pwa_prompt_available', { role: currentPersona });
+  });
+
+  installButton?.addEventListener('click', async () => {
+    if (!deferredInstallPrompt) {
+      showToast('Tap share and “Add to Home Screen” to install the HealthFlo mini-app.');
+      track('pwa_prompt_manual', { role: currentPersona });
+      return;
+    }
+    try {
+      deferredInstallPrompt.prompt();
+      const { outcome } = await deferredInstallPrompt.userChoice;
+      track('pwa_prompt_choice', { outcome, role: currentPersona });
+      if (outcome !== 'dismissed') {
+        hideInstallPromptBanner();
+      }
+    } catch (error) {
+      console.error('PWA install prompt failed', error);
+      track('pwa_prompt_choice_error', { message: error.message });
+    }
+    deferredInstallPrompt = null;
+  });
+
+  installDismiss?.addEventListener('click', () => {
+    installPromptDismissed = true;
+    hideInstallPromptBanner();
+    track('pwa_prompt_dismissed', { role: currentPersona });
+  });
+
+  window.addEventListener('appinstalled', () => {
+    hideInstallPromptBanner();
+    track('pwa_installed', { role: currentPersona });
+    showToast('HealthFlo installed—open it from your home screen.');
+  });
+
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  const isIOS = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+  if (!isStandalone && isIOS) {
+    setTimeout(() => {
+      if (!deferredInstallPrompt && !installPromptDismissed) {
+        showInstallPromptBanner();
+      }
+    }, 3500);
+  }
 };
 
 const init = () => {
@@ -1006,9 +767,18 @@ const init = () => {
   initTracking();
   initHeroAnimation();
   initStickyToggle();
+  initPackageControls();
+  initDevicePreview();
+  initPWA();
   initPersonaFromSource();
   initWhatsAppOptin();
-  observeReveal($$('.metric-panel, .guarantees'));
+  const revealTargets = [
+    ...$$('.metric-panel, .guarantees'),
+    ...experienceArticles,
+    ...actionCards
+  ];
+  if (devicePreview) revealTargets.push(devicePreview);
+  observeReveal(revealTargets.filter(Boolean));
 };
 
 document.addEventListener('DOMContentLoaded', init);
