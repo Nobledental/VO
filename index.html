@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="healthflo-landing">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>HealthFlo — Cashless Care & Revenue Intelligence</title>
+    <title>HealthFlo — Cashless Care & RCM for Patients, Hospitals, Insurers & Employers</title>
     <meta
       name="description"
-      content="HealthFlo aligns patients, hospitals, insurers, and employers on one platform—cashless approvals in hours, denial prevention, and corporate health benefits with real-time dashboards."
+      content="Transparent packages, faster cashless, denial recovery, and corporate health benefits—trusted by 570+ NABH partners."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,92 +14,34 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Keep existing styles/scripts and Android layer -->
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="hf-android.css" />
     <script defer src="main.js"></script>
-    <script defer src="hf-android.js"></script>
   </head>
-
-  <body>
-    <!-- ANDROID BACKGROUND LAYERS (unchanged design) -->
-    <div class="hf-bg-aurora" aria-hidden="true"></div>
-    <div class="hf-bg-noise" aria-hidden="true"></div>
-
-    <!-- ANDROID QUICK SETTINGS HEADER -->
-    <header class="hf-qs" data-hf-qs>
-      <div class="hf-qs-bar">
-        <div class="hf-qs-left">
-          <span class="hf-qs-time" data-hf-qstime>09:41</span>
-        </div>
-        <button
-          class="hf-qs-toggle hf-ripple"
-          data-hf-qstoggle
-          aria-label="Open Quick Settings"
-        >
-          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-            <path
-              d="M6 9l6 6 6-6"
-              fill="none"
-              stroke="#e9edf7"
-              stroke-width="2"
-              stroke-linecap="round"
-            />
-          </svg>
-        </button>
-        <div class="hf-qs-right"></div>
-      </div>
-
-      <div class="hf-qs-panel" data-hf-qspanel>
-        <div class="hf-qs-grabber" data-hf-qsdrag><span></span></div>
-
-        <div class="hf-qs-tiles">
-          <button class="hf-qs-tile hf-ripple is-on" data-hf-tile data-target="#services">
-            <div class="ico"></div><span>Solutions</span>
-          </button>
-          <button class="hf-qs-tile hf-ripple" data-hf-tile data-target="#atlas">
-            <div class="ico"></div><span>Products</span>
-          </button>
-          <button class="hf-qs-tile hf-ripple" data-hf-tile data-target="#contact">
-            <div class="ico"></div><span>Contact</span>
-          </button>
-        </div>
-
-        <div class="hf-qs-controls">
-          <div class="hf-qs-slider">
-            <input type="range" min="30" max="110" value="90" step="1" data-hf-brightness />
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="hf-qs-scrim" data-hf-scrim hidden></div>
-
-    <!-- SITE HEADER (keep layout; text only updated) -->
-    <header class="site-header">
+  <body data-theme="cosmic" data-persona="patient">
+    <header class="site-header" id="top">
       <div class="container header-inner">
-        <a class="logo hf-brand" href="#top" aria-label="HealthFlo">
+        <a class="logo" href="#top" aria-label="HealthFlo home">
           <span class="hf-dot" aria-hidden="true"></span>
           <span class="hf-word">HealthFlo</span>
         </a>
-
-        <nav class="primary-nav" aria-label="Primary">
+        <nav class="primary-nav" aria-label="Primary navigation">
           <ul>
-            <li><a href="#services">Solutions</a></li>
-            <li><a href="#services">For Hospitals</a></li>
-            <li><a href="#atlas">For Patients</a></li>
-            <li><a href="#resources">For Insurers &amp; Employers</a></li>
+            <li><a href="#why">Why HealthFlo</a></li>
+            <li><a href="#products">Solutions</a></li>
+            <li><a href="#how">How it works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-
         <div class="header-actions">
-          <a class="btn btn-primary" href="#contact">Book a demo</a>
-          <button
-            class="nav-toggle"
-            type="button"
-            aria-label="Toggle navigation"
-            aria-expanded="false"
-          >
+          <div class="theme-toggle" role="group" aria-label="Theme toggle">
+            <button type="button" data-theme-option="white">White</button>
+            <button type="button" data-theme-option="dark">Dark</button>
+            <button type="button" data-theme-option="matte">Matte</button>
+            <button type="button" data-theme-option="cosmic" class="is-active">Cosmic</button>
+          </div>
+          <a class="btn btn-primary" href="#lead" data-cta="header_demo">Book a demo</a>
+          <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
         </div>
@@ -107,667 +49,310 @@
     </header>
 
     <main>
-      <!-- HERO -->
-      <section class="hero" id="top">
-        <div class="container hero-inner">
-          <div class="hero-content">
-            <div class="hero-tags" role="list">
-              <span role="listitem">Cashless approvals</span>
-              <span role="listitem">RCM cockpit</span>
-              <span role="listitem">Policy decoder</span>
-              <span role="listitem">Corporate health</span>
-            </div>
-            <h1>Healthcare that just works — cashless, predictable, transparent.</h1>
-            <p>
-              HealthFlo connects hospitals, patients, insurers, and employers to move
-              from paperwork and delays to fast cashless care, accurate bills, and
-              live claim status.
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#paths">See a live walkthrough</a>
-              <a class="btn btn-secondary" href="#guide">Decode my policy (demo)</a>
-            </div>
-
-            <!-- (Optional) store badges can remain; they’ll act as secondary proof -->
-            <div class="app-badges">
-              <a href="https://apps.apple.com/" aria-label="Download on the App Store">
-                <img
-                  src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-                  alt="App Store badge"
-                />
-              </a>
-              <a href="https://play.google.com/store" aria-label="Get it on Google Play">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                  alt="Google Play badge"
-                />
-              </a>
-            </div>
-          </div>
-
-          <div class="hero-visual" aria-hidden="true">
-            <img
-              src="https://storage.googleapis.com/dev_resources_voka_io_303011/3d-atlas/approved_heart.webp"
-              alt="Abstract healthcare visualization"
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- SERVICES / SOLUTIONS -->
-      <section class="discovery" id="services">
-        <div class="container discovery-inner">
-          <div class="discovery-copy">
-            <h2>Pick your cockpit. Outcomes follow.</h2>
-            <p>
-              We orchestrate intake, eligibility, cashless, billing, and denial
-              prevention with one pane of glass for each stakeholder.
-            </p>
-            <a class="btn btn-secondary" href="#atlas">Explore solutions</a>
-          </div>
-          <div class="discovery-visual" aria-hidden="true">
-            <img
-              src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/preview.webp"
-              alt=""
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- PRODUCTS GRID (repurposed from “Normal anatomy / Atlas”) -->
-      <section class="normal-anatomy" id="atlas">
-        <div class="container">
-          <div class="section-heading">
-            <h2>Products that remove friction</h2>
-            <p>Modular, persona-aware tools that fit your workflows today.</p>
-          </div>
-
-          <div class="card-grid">
-            <article class="feature-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-1.webp"
-                alt="Policy & Coverage Decoder"
-              />
-              <div class="feature-content">
-                <h3>Policy &amp; Coverage Decoder</h3>
-                <p>
-                  Upload a policy and instantly see room rent caps, co-pays, PED
-                  wait periods, and non-payables.
-                </p>
-                <span class="meta">Patients · Concierge</span>
+      <section class="hero" aria-labelledby="hero-title">
+        <canvas id="heroCanvas" aria-hidden="true"></canvas>
+        <div class="hero-overlay">
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <p class="hero-subhead">Healthcare that just works — clear prices, faster cashless, and predictable claims.</p>
+              <p class="hero-proof">570+ NABH partners • 92% same-day approvals • 45s pre-auth median • 150k+ claims navigated</p>
+              <h1 id="hero-title">Move from paperwork to predictable healthcare.</h1>
+              <div class="persona-selector" role="group" aria-label="Select persona">
+                <button class="persona-btn" data-persona-option="patient">
+                  <span class="persona-icon" aria-hidden="true">🧑‍⚕️</span>
+                  I’m a Patient
+                </button>
+                <button class="persona-btn" data-persona-option="hospital">
+                  <span class="persona-icon" aria-hidden="true">🏥</span>
+                  I represent a Hospital
+                </button>
+                <button class="persona-btn" data-persona-option="insurer">
+                  <span class="persona-icon" aria-hidden="true">📊</span>
+                  I’m an Insurer
+                </button>
+                <button class="persona-btn" data-persona-option="employer">
+                  <span class="persona-icon" aria-hidden="true">💼</span>
+                  I’m an Employer
+                </button>
               </div>
-            </article>
-
-            <article class="feature-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-2.webp"
-                alt="Cashless Everywhere"
-              />
-              <div class="feature-content">
-                <h3>Cashless Everywhere</h3>
-                <p>
-                  Compliant pre-auth kits, TPA follow-ups, and discharge checklists
-                  to turn days into hours.
-                </p>
-                <span class="meta">Hospitals · RCM</span>
+              <div class="hero-actions">
+                <a id="personaCta" class="btn btn-primary" href="#lead" data-cta="hero_primary">Decode My Policy →</a>
+                <a class="btn btn-secondary" href="#how" data-cta="see_how">See how it works →</a>
               </div>
-            </article>
-
-            <article class="feature-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-3.webp"
-                alt="RCM Cockpit"
-              />
-              <div class="feature-content">
-                <h3>RCM Cockpit</h3>
-                <p>
-                  Receivables, SLAs, denials, and exception heatmaps with proactive
-                  nudges.
-                </p>
-                <span class="meta">Hospitals · Finance</span>
-              </div>
-            </article>
-
-            <article class="feature-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-4.webp"
-                alt="Corporate Health Hub"
-              />
-              <div class="feature-content">
-                <h3>Corporate Health Hub</h3>
-                <p>
-                  Plan design, enrollment, e-cards, cashless helpdesk, and HR
-                  utilization analytics.
-                </p>
-                <span class="meta">Employers · Benefits</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- USE CASES GRID (repurposed from “Pathology”) -->
-      <section class="pathology">
-        <div class="container">
-          <div class="section-heading">
-            <h2>Where HealthFlo shines</h2>
-            <p>Battle-tested in high-impact hospital and corporate scenarios.</p>
-          </div>
-
-          <div class="pathology-grid">
-            <article class="mini-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-5.webp"
-                alt=""
-              />
-              <div>
-                <h3>Emergency cashless intake</h3>
-                <span>45s median pre-auth</span>
-              </div>
-            </article>
-
-            <article class="mini-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-6.webp"
-                alt=""
-              />
-              <div>
-                <h3>Elective surgery packages</h3>
-                <span>Transparent bundles</span>
-              </div>
-            </article>
-
-            <article class="mini-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-7.webp"
-                alt=""
-              />
-              <div>
-                <h3>Denial recovery playbooks</h3>
-                <span>98% target recovery</span>
-              </div>
-            </article>
-
-            <article class="mini-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-8.webp"
-                alt=""
-              />
-              <div>
-                <h3>Network empanelment ops</h3>
-                <span>20+ payers</span>
-              </div>
-            </article>
-
-            <article class="mini-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-9.webp"
-                alt=""
-              />
-              <div>
-                <h3>Tariff &amp; package governance</h3>
-                <span>Zero mismatch</span>
-              </div>
-            </article>
-
-            <article class="mini-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-10.webp"
-                alt=""
-              />
-              <div>
-                <h3>Corporate plan rollout</h3>
-                <span>E-cards in minutes</span>
-              </div>
-            </article>
-
-            <article class="mini-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-11.webp"
-                alt=""
-              />
-              <div>
-                <h3>Employee helpdesk</h3>
-                <span>WhatsApp updates</span>
-              </div>
-            </article>
-
-            <article class="mini-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-12.webp"
-                alt=""
-              />
-              <div>
-                <h3>Policy telemetry</h3>
-                <span>Live limits &amp; riders</span>
-              </div>
-            </article>
-
-            <article class="mini-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-13.webp"
-                alt=""
-              />
-              <div>
-                <h3>Audit &amp; compliance</h3>
-                <span>Quarterly reviews</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- KNOWLEDGE / RESOURCES -->
-      <section class="knowledge" id="resources">
-        <div class="container knowledge-grid">
-          <article class="knowledge-card">
-            <div class="card-copy">
-              <h2>Clinical-grade documentation &amp; SOPs</h2>
-              <p>
-                Maker-checker checklists, insurer-specific rules, and appeal
-                templates you can deploy on day one.
-              </p>
-              <a class="btn btn-secondary" href="#">Explore</a>
-            </div>
-            <img
-              src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/Clinical%20knowledge%20hub%20bg.webp"
-              alt="Operations documentation preview"
-            />
-          </article>
-
-          <article class="knowledge-card free-app">
-            <div class="card-copy">
-              <h2>Try it free</h2>
-              <p>
-                Preview the policy decoder, sample dashboards, and denial playbooks
-                with test data.
-              </p>
-              <div class="app-badges">
-                <a href="https://apps.apple.com/" aria-label="Download on the App Store">
-                  <img
-                    src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-                    alt="App Store badge"
-                  />
-                </a>
-                <a href="https://play.google.com/store" aria-label="Get it on Google Play">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                    alt="Google Play badge"
-                  />
+              <div class="whatsapp-optin">
+                <a id="whatsappCta" href="https://wa.me/919940207670" target="_blank" rel="noopener" data-cta="whatsapp_summary">
+                  Prefer WhatsApp? Get a 2-min summary (no sales calls)
                 </a>
               </div>
             </div>
-            <img
-              src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/iPhone%20XS%20Longscroll%20Mockup%201.webp"
-              alt="HealthFlo mobile preview"
-            />
-          </article>
-        </div>
-      </section>
-
-      <!-- GUIDE / HOW IT WORKS -->
-      <section class="guide" id="guide">
-        <div class="container guide-inner">
-          <div class="guide-header">
-            <h2>How HealthFlo works (3-minute tour)</h2>
-            <p>From intake to cash-in with fewer surprises.</p>
-          </div>
-
-          <div class="guide-steps">
-            <article class="step-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/guide-1.webp"
-                alt="Intake and eligibility"
-              />
-              <h3>Intake &amp; eligibility</h3>
-              <p>Pre-visit triage, document capture, and policy verification.</p>
-            </article>
-
-            <article class="step-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/guide-2.webp"
-                alt="Pre-auth and cashless"
-              />
-              <h3>Pre-auth &amp; cashless</h3>
-              <p>AI-prepared packs and insurer-aligned checklists for fast approvals.</p>
-            </article>
-
-            <article class="step-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/guide-3.webp"
-                alt="Billing and RCM"
-              />
-              <h3>Billing &amp; RCM</h3>
-              <p>Clean coding, tariff sync, and exception alerts reduce under-billing.</p>
-            </article>
-
-            <article class="step-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/guide-4.webp"
-                alt="Denial prevention"
-              />
-              <h3>Denial prevention</h3>
-              <p>Reason codes, owners, and appeal templates that recover revenue.</p>
-            </article>
+            <div class="hero-visual" aria-hidden="true">
+              <div class="hero-card" data-reveal>
+                <img src="https://storage.googleapis.com/dev_resources_voka_io_303011/3d-atlas/approved_heart.webp" alt="HealthFlo visual" />
+                <div class="hero-card-copy">
+                  <p>AI-guided pre-auth packs</p>
+                  <span>45s median pre-auth</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ASSURANCE / TRUST -->
-      <section class="assurance">
-        <div class="container assurance-inner">
-          <div class="assurance-copy">
-            <h2>We say “compliant &amp; reliable” — and we prove it</h2>
-            <p>
-              IRDAI-aligned processes, role-based access, encrypted data flows, and
-              quarterly audits underpin every workflow.
-            </p>
-          </div>
-
-          <div class="assurance-cards">
-            <article>
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/fluent_star-12-filled.svg"
-                alt=""
-              />
-              <h3>Processes</h3>
-              <p>SOPs for pre-auth, discharge, and audits with insurer-specific guardrails.</p>
-            </article>
-            <article>
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/lucide_text.svg"
-                alt=""
-              />
-              <h3>Controls</h3>
-              <p>Maker-checker, approval trails, and tariff/package versioning.</p>
-            </article>
-            <article>
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/grommet-icons_validate.svg"
-                alt=""
-              />
-              <h3>Outcomes</h3>
-              <p>92% same-day approvals; 45s pre-auth median; 35% AR-days reduction.*</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- BY ROLE (repurpose “Atlas fields”) -->
-      <section class="atlas-fields">
+      <section id="why" class="why" aria-labelledby="why-title">
         <div class="container">
-          <div class="section-heading">
-            <h2>Your role, your cockpit</h2>
-            <p>We tailor flows to how you work—no retraining required.</p>
+          <div class="section-heading" data-reveal>
+            <h2 id="why-title">Why choose HealthFlo</h2>
+            <p>Clarity, velocity, and recovery tailored to your role.</p>
           </div>
-
-          <div class="atlas-grid">
-            <article class="atlas-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/your-field-your-atlas-students.webp"
-                alt="Patients using HealthFlo"
-              />
-              <div class="atlas-content">
-                <h3>Patients &amp; Families</h3>
-                <p>
-                  Decode coverage, compare packages, and track cashless status without
-                  paperwork chaos.
-                </p>
-              </div>
-            </article>
-
-            <article class="atlas-card">
-              <img
-                src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/your-field-your-atlas-doctors.webp"
-                alt="Hospitals using HealthFlo"
-              />
-              <div class="atlas-content">
-                <h3>Hospitals &amp; RCM</h3>
-                <p>
-                  Predictable cashflows with a claims pipeline, receivables, denial intel,
-                  and insurer SLAs.
-                </p>
-              </div>
-            </article>
+          <div class="pillar-grid" data-why-grid></div>
+          <div class="section-cta" data-reveal>
+            <a class="btn btn-link" href="#how" data-cta="why_how">See how it works →</a>
           </div>
         </div>
       </section>
 
-      <!-- CORPORATE HEALTH / PARTNERSHIPS (repurpose “University”) -->
-      <section class="university">
-        <div class="container university-inner">
-          <div class="university-copy">
-            <h2>Corporate healthcare that teams actually use</h2>
-            <p>
-              Design the right plan, enroll in days, issue e-cards in minutes, and
-              support employees with a live cashless helpdesk.
-            </p>
-            <div class="university-actions">
-              <a class="btn btn-primary" href="#contact">Design my plan</a>
-            </div>
-
-            <ul class="capability-list">
-              <li>
-                <img
-                  src="https://storage.googleapis.com/dev_resources_voka_io_303011/icons/mage_box-3d-fill.svg"
-                  alt=""
-                />
-                Plan design &amp; census modeling
-              </li>
-              <li>
-                <img
-                  src="https://storage.googleapis.com/dev_resources_voka_io_303011/icons/jam_language.svg"
-                  alt=""
-                />
-                Fast enrollment &amp; e-cards
-              </li>
-              <li>
-                <img
-                  src="https://storage.googleapis.com/dev_resources_voka_io_303011/icons/Group%201.svg"
-                  alt=""
-                />
-                Cashless helpdesk &amp; SLAs
-              </li>
-              <li>
-                <img
-                  src="https://storage.googleapis.com/dev_resources_voka_io_303011/icons/Group%202.svg"
-                  alt=""
-                />
-                HR utilization analytics
-              </li>
-              <li>
-                <img
-                  src="https://storage.googleapis.com/dev_resources_voka_io_303011/icons/ic_round-table-restaurant.webp"
-                  alt=""
-                />
-                Integrations (HRIS/Payroll)
-              </li>
-            </ul>
-          </div>
-
-          <div class="university-visual" aria-hidden="true">
-            <img
-              src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/university-computers.webp"
-              alt=""
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="contact" id="contact">
-        <div class="container contact-inner">
-          <form class="contact-form" action="#" method="post">
-            <h2>Talk to a specialist</h2>
-            <p>
-              Tell us who you are and what you want to improve—RCM, cashless, corporate
-              health, or distribution.
-            </p>
-
-            <div class="form-grid">
-              <label>
-                <span>Name*</span>
-                <input type="text" name="name" required />
-              </label>
-              <label>
-                <span>Organization*</span>
-                <input type="text" name="organization" required />
-              </label>
-              <label>
-                <span>Business email*</span>
-                <input type="email" name="email" required />
-              </label>
-              <label>
-                <span>Subject*</span>
-                <input type="text" name="subject" required />
-              </label>
-            </div>
-
-            <label class="wide">
-              <span>Describe your needs in detail</span>
-              <textarea name="message" rows="5" placeholder="Your message"></textarea>
-            </label>
-
-            <div class="file-upload">
-              <label>
-                Drop documents here (PNG, JPG, PDF, PPT, MP4 · max 15MB)
-                <input type="file" name="attachment" multiple />
-              </label>
-              <p>Optional</p>
-            </div>
-
-            <div class="form-footer">
-              <label class="consent">
-                <input type="checkbox" name="consent" required />
-                <span>
-                  By clicking “Send”, you agree to the processing of your data and to be
-                  contacted about this request.
-                </span>
-              </label>
-              <button class="btn btn-primary" type="submit">Send</button>
-            </div>
-          </form>
-
-          <aside class="contact-info">
-            <h3>Let’s accelerate your outcomes</h3>
-            <p>
-              We help hospitals, insurers, and employers launch cashless, improve
-              recovery, and make healthcare painless for patients.
-            </p>
+      <section class="social-proof" aria-labelledby="proof-title">
+        <div class="container">
+          <div class="logo-band" data-reveal>
+            <span aria-hidden="true">Trusted by</span>
             <ul>
-              <li>RCM cockpit &amp; denial recovery</li>
-              <li>Cashless approvals &amp; discharge checklists</li>
-              <li>Corporate plan design &amp; employee helpdesk</li>
-              <li>Insurer network ops &amp; distribution pilots</li>
+              <li><img src="https://upload.wikimedia.org/wikipedia/en/1/10/Aster_DM_Healthcare_logo.svg" alt="Aster" /></li>
+              <li><img src="https://upload.wikimedia.org/wikipedia/en/1/11/Fortis_Healthcare_logo.svg" alt="Fortis" /></li>
+              <li><img src="https://upload.wikimedia.org/wikipedia/en/e/e0/Manipal_Hospitals_logo.svg" alt="Manipal" /></li>
+              <li><img src="https://upload.wikimedia.org/wikipedia/en/5/55/Apollo_Hospitals_logo.svg" alt="Apollo" /></li>
+              <li><img src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/careplus-logo.svg" alt="Care+" /></li>
             </ul>
-            <p class="contact-email">
-              Prefer email? <a href="mailto:hello@healthflo.in">hello@healthflo.in</a>
-            </p>
-          </aside>
+          </div>
+          <figure class="quote" data-reveal>
+            <blockquote id="personaQuote">
+              “Cashless approvals moved from days to hours. The dashboard keeps finance and nursing in sync.”
+            </blockquote>
+            <figcaption id="personaQuoteMeta">— RCM Head, 250-bed hospital, Chennai</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="products" class="products" aria-labelledby="products-title">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <h2 id="products-title">Get care on your terms</h2>
+            <p>Only see what matters for your role.</p>
+          </div>
+          <div class="product-grid" data-product-grid></div>
+          <div class="package-panel" data-package-panel hidden aria-hidden="true">
+            <div class="package-header">
+              <h3>From normal to clinical: ready-to-go packages</h3>
+              <p>Compare inclusions, hospital partners, and cashless eligibility in seconds.</p>
+            </div>
+            <div class="package-grid" data-packages></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="how" class="how" aria-labelledby="how-title">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <h2 id="how-title">How it works</h2>
+            <p>Three focused steps from first contact to results.</p>
+          </div>
+          <ol class="step-grid" data-how-steps></ol>
+        </div>
+      </section>
+
+      <section class="proof" aria-labelledby="proof-title">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <h2 id="proof-title">Proof &amp; guarantees</h2>
+            <p>Guardrails, measurable outcomes, and compliance baked in.</p>
+          </div>
+          <div class="proof-grid" data-reveal>
+            <article class="metric-card">
+              <h3>Operational outcomes</h3>
+              <ul>
+                <li>92% same-day approvals</li>
+                <li>45s pre-auth median</li>
+                <li>98% recovery on targeted denial categories</li>
+                <li class="muted">Outcomes vary by specialty, city tier, and documentation quality.</li>
+              </ul>
+            </article>
+            <article class="metric-card" id="riskReversalCard">
+              <h3>Risk reversal</h3>
+              <ul id="riskReversalList"></ul>
+            </article>
+            <article class="metric-card">
+              <h3>Compliance stack</h3>
+              <ul>
+                <li>IRDAI aligned &amp; privacy by design</li>
+                <li>Role-based access controls</li>
+                <li>Quarterly audits &amp; GIPSA-ready tariffs</li>
+                <li>Data encrypted, purpose-bound sharing</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="objections" aria-labelledby="objections-title">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <h2 id="objections-title">Answering the tough questions</h2>
+            <p>Clear, compliant responses your stakeholders will ask.</p>
+          </div>
+          <div class="accordion" data-accordion>
+            <details open>
+              <summary>“Cashless pre-network sounds risky.”</summary>
+              <p>It runs under documented, compliant structures with audit trails, payer notifications, and risk caps mapped to policy wording.</p>
+            </details>
+            <details>
+              <summary>“Our team is already stretched.”</summary>
+              <p>We provide SOP templates, automation, and a concierge layer that shoulders paperwork so your team focuses on care.</p>
+            </details>
+            <details>
+              <summary>“Employees won’t adopt another app.”</summary>
+              <p>They only see essentials—cards, limits, claim status—delivered on WhatsApp, email, or the tools they already use.</p>
+            </details>
+            <details>
+              <summary>“We’re locked into existing partners.”</summary>
+              <p>HealthFlo is connective tissue, not a replacement. Integrate via APIs, keep current partners, and layer new visibility instantly.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="pricing" aria-labelledby="pricing-title">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <h2 id="pricing-title">Pricing built around outcomes</h2>
+            <p>Transparency first, commitment when you see value.</p>
+          </div>
+          <div class="pricing-grid" data-reveal>
+            <article class="pricing-card" data-pricing-card data-reveal></article>
+          </div>
+          <div class="pricing-cta" data-reveal>
+            <a class="btn btn-primary" href="#lead" data-cta="pricing_request">Request pricing</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact" aria-labelledby="contact-title">
+        <div class="container contact-inner">
+          <div class="contact-copy" data-reveal>
+            <h2 id="contact-title">Start a qualified conversation</h2>
+            <p>We’ll align on goals, data sources, and launch milestones within 24 hours.</p>
+            <ul>
+              <li>7+ years, 100+ empanelments, multi-city ops</li>
+              <li>ROHINI/NABH/GIPSA expertise; quarterly audits</li>
+              <li>Data minimal, encrypted, purpose-bound; you control insurer/TPA sharing</li>
+            </ul>
+            <div class="contact-links">
+              <a href="tel:+919940207670">+91 99402 07670</a>
+              <a href="mailto:hello@healthflo.in">hello@healthflo.in</a>
+            </div>
+          </div>
+          <form class="contact-form" id="contactForm" novalidate data-reveal>
+            <div class="form-row">
+              <label>
+                <span>Your name</span>
+                <input type="text" name="name" autocomplete="name" required />
+              </label>
+              <label>
+                <span>Work email</span>
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+            </div>
+            <label>
+              <span>How can we help?</span>
+              <textarea name="message" rows="4" placeholder="Tell us about cashless, denial recovery, or plan design"></textarea>
+            </label>
+            <button class="btn btn-secondary" type="submit" data-cta="contact_submit">Send message</button>
+          </form>
         </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="container footer-inner">
-        <div class="footer-top">
-          <div class="footer-brand">
-            <a class="logo" href="#top">
-              <img
-                src="https://voka.io/wp-content/uploads/2025/03/Logo-1.png"
-                alt="HealthFlo logo"
-              />
-            </a>
-            <p>
-              Unified healthcare marketplace aligning patients, hospitals, insurers, and
-              employers—cashless approvals, predictable revenue, and transparent journeys.
-            </p>
-          </div>
-
-          <div class="footer-columns">
-            <div class="footer-column">
-              <h4>Solutions</h4>
-              <ul>
-                <li><a href="#atlas">Cashless Everywhere</a></li>
-                <li><a href="#atlas">RCM Cockpit</a></li>
-                <li><a href="#atlas">Policy Decoder</a></li>
-                <li><a href="#atlas">Corporate Health</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4>By Role</h4>
-              <ul>
-                <li><a href="#atlas">Patients</a></li>
-                <li><a href="#atlas">Hospitals</a></li>
-                <li><a href="#resources">Insurers</a></li>
-                <li><a href="#university">Employers</a></li>
-              </ul>
-              <h4>Resources</h4>
-              <ul>
-                <li><a href="#resources">Playbooks</a></li>
-                <li><a href="#resources">Case studies</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4>Terms &amp; policies</h4>
-              <ul>
-                <li><a href="#">Privacy policy</a></li>
-                <li><a href="#">Terms of use</a></li>
-                <li><a href="#">Accessibility</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4>Information</h4>
-              <ul>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Articles</a></li>
-                <li><a href="#">Cases</a></li>
-              </ul>
-              <a class="btn btn-secondary" href="#contact">Book a demo</a>
-            </div>
-          </div>
+        <div class="footer-brand">
+          <a class="logo" href="#top">
+            <span class="hf-dot" aria-hidden="true"></span>
+            <span class="hf-word">HealthFlo</span>
+          </a>
+          <p>Unified care infrastructure for patients, hospitals, insurers, and employers. Faster cashless, fewer denials, happier members.</p>
         </div>
-
-        <div class="footer-bottom">
+        <div class="footer-columns">
           <div>
-            <a href="mailto:hello@healthflo.in">hello@healthflo.in</a>
-            <span>+91 99402 07670</span>
+            <h4>About</h4>
+            <ul>
+              <li>7+ years, 100+ empanelments, multi-city ops</li>
+              <li>India HQ: Chennai · Bengaluru · Hyderabad</li>
+            </ul>
           </div>
-          <address>India HQ: Chennai · Bengaluru · Hyderabad</address>
+          <div>
+            <h4>Compliance</h4>
+            <ul>
+              <li>ROHINI/NABH/GIPSA expertise</li>
+              <li>Quarterly audits, privacy by design</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="tel:+919940207670">Phone</a></li>
+              <li><a href="https://wa.me/919940207670" target="_blank" rel="noopener">WhatsApp</a></li>
+              <li><a href="mailto:hello@healthflo.in">Email</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Policies</h4>
+            <ul>
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Accessibility</a></li>
+            </ul>
+          </div>
         </div>
+        <p class="footer-note">Data minimal, encrypted, and purpose-bound. You control insurer/TPA sharing.</p>
       </div>
     </footer>
 
-    <!-- TOASTS -->
-    <div class="hf-toasts" id="hf-toasts" aria-live="polite" aria-atomic="true"></div>
+    <aside class="lead-capture" id="lead" aria-live="polite">
+      <form id="leadForm" class="lead-form" novalidate>
+        <div class="lead-head">
+          <h3>Next step with HealthFlo</h3>
+          <p id="leadSubtitle">We’ll decode your policy and map next steps.</p>
+        </div>
+        <div class="lead-fields" data-lead-fields></div>
+        <label class="whatsapp-check">
+          <input type="checkbox" name="whatsapp_opt_in" />
+          <span>WhatsApp updates only (no spam)</span>
+        </label>
+        <button class="btn btn-primary" type="submit" data-cta="lead_submit">Start now</button>
+        <button class="lead-close" type="button" aria-label="Dismiss lead form">✕</button>
+        <p class="lead-alt">Prefer docs? <a href="#" data-cta="playbook_download">Get a 3-slide playbook for your city &amp; specialty →</a></p>
+      </form>
+    </aside>
 
-    <!-- APP/WIDGET SHEET -->
-    <div class="hf-app-sheet" id="hfAppSheet" aria-modal="true" role="dialog">
-      <div class="hf-app-scrim" data-hf-app-close></div>
-      <div class="hf-app-window">
-        <div class="hf-app-head">
-          <div class="hf-app-title">
-            <span class="mini" id="hfAppIcon"></span>
-            <span id="hfAppTitle">App</span>
-          </div>
-          <button class="hf-app-close hf-ripple" data-hf-app-close aria-label="Close">✕</button>
+    <a class="floating-whatsapp" id="floatingWhatsapp" href="https://wa.me/919940207670" target="_blank" rel="noopener" data-cta="floating_whatsapp">
+      WhatsApp summary ↗
+    </a>
+
+    <button class="ai-copilot" id="aiCopilot" type="button" aria-haspopup="dialog" aria-controls="copilotModal">
+      <span>AI Copilot</span>
+    </button>
+
+    <div class="copilot-modal" id="copilotModal" role="dialog" aria-modal="true" aria-labelledby="copilotTitle" hidden>
+      <div class="copilot-dialog">
+        <div class="copilot-header">
+          <h3 id="copilotTitle">HealthFlo Copilot</h3>
+          <button type="button" class="copilot-close" aria-label="Close copilot">✕</button>
         </div>
-        <div class="hf-app-tabs" role="tablist">
-          <button class="hf-app-tab hf-ripple" role="tab" aria-selected="true" data-tab="overview">Overview</button>
-          <button class="hf-app-tab hf-ripple" role="tab" aria-selected="false" data-tab="activity">Activity</button>
-          <button class="hf-app-tab hf-ripple" role="tab" aria-selected="false" data-tab="settings">Settings</button>
+        <p id="copilotSubtitle">Jump start insights with persona-aware prompts.</p>
+        <div class="copilot-chips" data-copilot-chips></div>
+        <div class="copilot-body">
+          <textarea id="copilotInput" rows="3" placeholder="Type a question or pick a prompt"></textarea>
+          <button class="btn btn-secondary" type="button" id="copilotSend" data-cta="copilot_send">Send to Copilot</button>
         </div>
-        <div class="hf-app-body" id="hfAppBody"></div>
       </div>
     </div>
-
-    <!-- SFX -->
-    <audio id="hf-sfx-header" preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-click-900.mp3"></audio>
-    <audio id="hf-sfx-click"  preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-modern-technology-select-3124.mp3"></audio>
-    <audio id="hf-sfx-close"  preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-menu-back-3077.mp3"></audio>
   </body>
 </html>
