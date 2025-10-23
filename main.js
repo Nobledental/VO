@@ -121,7 +121,7 @@ const personaConfig = {
       ]
     },
     ai: {
-@@ -219,50 +221,52 @@ const personaConfig = {
+ const personaConfig = {
         },
         {
           title: 'RCM cockpit',
@@ -174,7 +174,7 @@ const personaConfig = {
     whatsapp: 'Hi, pilot interest: focus cities __, target LOS __.',
     why: [
       {
-@@ -313,50 +317,52 @@ const personaConfig = {
+ const personaConfig = {
         },
         {
           title: 'Loss-ratio analytics',
@@ -227,7 +227,7 @@ const personaConfig = {
     whatsapp: 'Hi, we’re {headcount} and exploring plan design for {go-live}.',
     why: [
       {
-@@ -406,50 +412,52 @@ const personaConfig = {
+ const personaConfig = {
         },
         {
           title: 'HR analytics',
@@ -280,7 +280,7 @@ const personaConfig = {
       ]
     },
     ai: {
-@@ -464,141 +472,214 @@ const personaConfig = {
+ const personaConfig = {
     packages: []
   }
 };
@@ -495,7 +495,7 @@ const howCopy = (step, persona) => {
       'Launch cashless / empanelment': 'AI-prepared packs, SLA timers, and tariff governance keep teams compliant.',
       'Denial prevention + cockpit': 'Exception heatmaps and recovery loops close the gap on underpayments.'
     },
-@@ -608,52 +689,64 @@ const howCopy = (step, persona) => {
+ const howCopy = (step, persona) => {
       'Run loss-ratio analytics': 'Monitor LOS, denial patterns, and channel ROAS with automated alerts.'
     },
     employer: {
@@ -560,7 +560,7 @@ const renderLeadForm = (config) => {
       }
       return `
         <label>
-@@ -965,50 +1058,221 @@ const initHeroAnimation = () => {
+ const initHeroAnimation = () => {
     heroAnimationId = requestAnimationFrame(draw);
   };
   resize();
