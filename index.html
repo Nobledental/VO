@@ -2,27 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>HealthFlo — Cashless Care &amp; RCM for Patients, Hospitals, Insurers &amp; Employers</title>
     <meta
       name="description"
       content="Transparent packages, faster cashless, denial recovery, and corporate health benefits—trusted by 570+ NABH partners."
     />
-    <meta name="application-name" content="HealthFlo" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="theme-color" content="#1e3fa1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="manifest" href="manifest.webmanifest" />
-    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png" />
     <link rel="stylesheet" href="styles.css" />
     <script defer src="main.js"></script>
   </head>
@@ -48,6 +39,46 @@
 
         <div class="header-actions">
           <div class="theme-toggle" role="radiogroup" aria-label="Theme">
+            <button class="theme-chip" data-theme-target="white" role="radio" aria-checked="false">White</button>
+            <button class="theme-chip" data-theme-target="dark" role="radio" aria-checked="false">Dark</button>
+            <button class="theme-chip" data-theme-target="matte" role="radio" aria-checked="false">Matte</button>
+            <button class="theme-chip is-active" data-theme-target="cosmic" role="radio" aria-checked="true">Cosmic</button>
+          </div>
+          <a class="btn btn-primary" href="#lead" data-track="cta" data-track-label="header_demo">Book a demo</a>
+          <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="hero">
+        <div class="hero-background" aria-hidden="true">
+          <canvas id="heroCanvas"></canvas>
+        </div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <p class="hero-support">Healthcare that just works — clear prices, faster cashless, and predictable claims.</p>
+            <p class="hero-proof">570+ NABH partners • 92% same-day approvals • 45s pre-auth median • 150k+ claims navigated</p>
+            <div class="persona-selector" role="group" aria-label="Select persona">
+              <button class="persona-chip" data-persona="patient">
+                <span class="persona-icon" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" role="presentation"><path d="M16 16c3.6 0 6.5-2.9 6.5-6.5S19.6 3 16 3s-6.5 2.9-6.5 6.5S12.4 16 16 16zm0 3c-5.5 0-10 3.6-10 8v2h20v-2c0-4.4-4.5-8-10-8z" /></svg>
+                </span>
+                <span class="persona-label">I’m a Patient</span>
+              </button>
+              <button class="persona-chip" data-persona="hospital">
+                <span class="persona-icon" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" role="presentation"><path d="M6 4h20v24H6zm11 6v-3h-2v3h-3v2h3v3h2v-3h3v-2zm-9 4v10h4V14zm7 0v10h4V14zm7 0v10h4V14z" /></svg>
+                </span>
+                <span class="persona-label">I represent a Hospital</span>
+              </button>
+              <button class="persona-chip" data-persona="insurer">
+                <span class="persona-icon" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" role="presentation"><path d="M4 7l12-5 12 5v9c0 7-5.4 13.4-12 15-6.6-1.6-12-8-12-15zm12 18.9c4.7-1.4 8-6 8-9.9V9.3L16 5.8 8 9.3V16c0 3.9 3.3 8.5 8 9.9z" /></svg>
+                </span>
+                <span class="persona-label">I’m an Insurer</span>
               </button>
               <button class="persona-chip" data-persona="employer">
                 <span class="persona-icon" aria-hidden="true">
@@ -73,16 +104,6 @@
                 >Prefer WhatsApp? Get a 2-min summary</a>
               </div>
               <p class="microcopy">No spam. Control when and how we reach out. WhatsApp summaries only.</p>
-              <div class="install-banner" data-install-banner hidden aria-hidden="true">
-                <div class="install-copy">
-                  <strong>Install HealthFlo</strong>
-                  <p>Save your policy decode offline, track approvals, and get device-native alerts.</p>
-                </div>
-                <div class="install-actions">
-                  <button class="btn btn-secondary" type="button" data-install-button>Install app</button>
-                  <button class="btn btn-ghost" type="button" data-install-dismiss aria-label="Dismiss install banner">Not now</button>
-                </div>
-              </div>
             </div>
           </div>
           <div class="hero-visual" aria-hidden="true">
@@ -108,6 +129,16 @@
           <div class="pillars" data-why-grid></div>
           <a class="cta-link" href="#how" data-track="cta" data-track-label="why_how">See how it works →</a>
         </div>
+      </section>
+
+      <section class="social-proof" id="proof">
+        <div class="container">
+          <div class="logo-band" aria-label="Trusted by hospitals and payers">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Aster_DM_Healthcare_logo.svg" alt="Aster" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/4/46/Fortis_Healthcare_logo.svg" alt="Fortis" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/3/37/Manipal_Hospitals_logo.svg" alt="Manipal" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/8/82/Apollo_Hospitals_Logo.svg" alt="Apollo" />
+            <span class="logo-care" role="img" aria-label="Care plus">Care<span>+</span></span>
           </div>
           <blockquote class="quote">
             <p data-quote-text>“Cashless approvals moved from days to hours. The dashboard keeps finance and nursing in sync.”</p>
@@ -133,140 +164,7 @@
             <p>Compare city-wise treatment packages with what’s included before you decide.</p>
           </div>
           <p class="packages-note">From normal to clinical: curated bundles with NABH hospitals, cashless-ready when your policy allows.</p>
-          <div class="package-controls" data-package-controls hidden aria-hidden="true">
-            <label>
-              <span>City</span>
-              <select data-package-filter="city" aria-label="Filter packages by city"></select>
-            </label>
-            <label>
-              <span>Specialty</span>
-              <select data-package-filter="specialty" aria-label="Filter packages by specialty"></select>
-            </label>
-            <label class="filter-toggle">
-              <input type="checkbox" data-package-filter="cashless" />
-              <span>Show cashless-ready only</span>
-            </label>
-            <button class="btn btn-ghost" type="button" data-package-reset>Reset</button>
-          </div>
           <div class="package-cards" data-package-grid></div>
-        </div>
-      </section>
-
-      <section class="experience" id="experience">
-        <div class="container experience-inner">
-          <div class="section-heading">
-            <h2>Feels like an app on any device</h2>
-            <p>Install HealthFlo to keep pre-auth kits, tariffs, and approvals in your pocket—even when you go offline.</p>
-          </div>
-          <div class="device-preview" data-device-preview>
-            <div class="device-tabs" role="tablist" aria-label="Preview HealthFlo experience">
-              <button class="device-tab is-active" role="tab" aria-selected="true" data-device-target="mobile" aria-controls="device-panel-mobile">Mobile</button>
-              <button class="device-tab" role="tab" aria-selected="false" data-device-target="tablet" aria-controls="device-panel-tablet">Tablet</button>
-              <button class="device-tab" role="tab" aria-selected="false" data-device-target="desktop" aria-controls="device-panel-desktop">Desktop</button>
-              <button class="device-tab" role="tab" aria-selected="false" data-device-target="command" aria-controls="device-panel-command">Command center</button>
-            </div>
-            <div class="device-panels">
-              <article class="device-panel is-active" data-device-panel="mobile" role="tabpanel" id="device-panel-mobile">
-                <h3>Mobile concierge</h3>
-                <p>One-tap WhatsApp summaries, digital e-cards, and quick claim status for families on the move.</p>
-                <ul class="device-points">
-                  <li>Offline access to your last policy decode</li>
-                  <li>Biometric login on iOS &amp; Android</li>
-                  <li>Deep links to upload docs instantly</li>
-                </ul>
-              </article>
-              <article class="device-panel" data-device-panel="tablet" role="tabpanel" id="device-panel-tablet" aria-hidden="true">
-                <h3>Ward &amp; front desk ready</h3>
-                <p>Tablet dashboards surface package guardrails, eligibility, and SOP checklists without leaving the patient.</p>
-                <ul class="device-points">
-                  <li>Queue view for approvals &amp; expiries</li>
-                  <li>Offline-ready SOP &amp; document kits</li>
-                  <li>Works in split-screen with HIS apps</li>
-                </ul>
-              </article>
-              <article class="device-panel" data-device-panel="desktop" role="tabpanel" id="device-panel-desktop" aria-hidden="true">
-                <h3>Operations cockpit</h3>
-                <p>Role-based dashboards bring finance, RCM, and HR onto one shared command center.</p>
-                <ul class="device-points">
-                  <li>Live SLA breaches with suggested actions</li>
-                  <li>Denial forensics with downloadable trails</li>
-                  <li>Keyboard-first shortcuts &amp; dark mode</li>
-                </ul>
-              </article>
-              <article class="device-panel" data-device-panel="command" role="tabpanel" id="device-panel-command" aria-hidden="true">
-                <h3>Automation pipelines</h3>
-                <p>Trigger nudges, escalations, and alerts across email, SMS, or WhatsApp without writing code.</p>
-                <ul class="device-points">
-                  <li>Drag-and-drop workflow builder</li>
-                  <li>Connect TPAs, HRIS, and ERPs securely</li>
-                  <li>Audit trails for every decision</li>
-                </ul>
-              </article>
-            </div>
-          </div>
-        </div>
-        <div class="experience-badges">
-          <div class="container experience-grid">
-            <article>
-              <h3>Progressive Web App</h3>
-              <p>Install to the home screen, receive push-ready alerts, and sync once online.</p>
-            </article>
-            <article>
-              <h3>Adaptive layouts</h3>
-              <p>Dynamic typography and grid density adapt to any screen size automatically.</p>
-            </article>
-            <article>
-              <h3>Secure by design</h3>
-              <p>Biometric unlock, encrypted storage, and role-based controls travel with the app.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="quick-actions" id="quick-actions">
-        <div class="container">
-          <div class="section-heading">
-            <h2>Quick actions for every scenario</h2>
-            <p>Launch the right workflow without hunting for menus—built for busy wards and HR desks.</p>
-          </div>
-          <div class="action-grid">
-            <a class="action-card" href="tel:+919940207670" data-track="cta" data-track-label="quick_call">
-              <span class="action-icon" aria-hidden="true">📞</span>
-              <div>
-                <h3>Call the command center</h3>
-                <p>Connect to our escalation desk in under 60 seconds.</p>
-              </div>
-            </a>
-            <a
-              class="action-card"
-              href="https://wa.me/919940207670"
-              target="_blank"
-              rel="noopener"
-              data-track="cta"
-              data-track-label="quick_whatsapp"
-              data-whatsapp-link
-            >
-              <span class="action-icon" aria-hidden="true">💬</span>
-              <div>
-                <h3>Start a WhatsApp triage</h3>
-                <p>Secure thread with document checklist &amp; status pings.</p>
-              </div>
-            </a>
-            <a class="action-card" href="#packages" data-track="cta" data-track-label="quick_packages">
-              <span class="action-icon" aria-hidden="true">📦</span>
-              <div>
-                <h3>Compare treatment packages</h3>
-                <p>Transparent inclusions, exclusions, and cashless eligibility.</p>
-              </div>
-            </a>
-            <a class="action-card" href="#lead" data-track="cta" data-track-label="quick_specialist">
-              <span class="action-icon" aria-hidden="true">🕑</span>
-              <div>
-                <h3>Book a specialist in minutes</h3>
-                <p>Guaranteed callback windows matched to your persona.</p>
-              </div>
-            </a>
-          </div>
         </div>
       </section>
 
@@ -295,6 +193,37 @@
             <h3>Proof &amp; guarantees</h3>
             <ul>
               <li data-risk-line>Hospitals: If we miss agreed SLAs for two weeks in a row, we fund an extra ops sprint at no cost.</li>
+              <li>Compliance: IRDAI aligned, privacy by design, role-based access, quarterly audits.</li>
+              <li>Playbooks, SOPs, and denial forensics ready from day one.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="objections" id="faq">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Answering the hard questions</h2>
+            <p>Transparent guardrails so legal, finance, and care teams stay confident.</p>
+          </div>
+          <div class="accordion">
+            <details open>
+              <summary>“Cashless pre-network sounds risky.”</summary>
+              <p>It runs under documented, compliant structures with escrowed tariffs, payer approvals, and recorded consents before discharge.</p>
+            </details>
+            <details>
+              <summary>“Our team is already stretched.”</summary>
+              <p>We deploy SOP templates, AI-prepared kits, and on-ground transition support so your staff focuses on care, not copying forms.</p>
+            </details>
+            <details>
+              <summary>“Employees won’t adopt another app.”</summary>
+              <p>Employees only see essentials—e-cards, network hospitals, claim status—delivered via WhatsApp, email, or embedded in your HRIS.</p>
+            </details>
+            <details>
+              <summary>“We’re locked into existing partners.”</summary>
+              <p>HealthFlo integrates with existing TPAs, brokers, and HIS platforms. Think connective tissue, not a rip-and-replace.</p>
+            </details>
+          </div>
         </div>
       </section>
 
@@ -320,17 +249,10 @@
       </section>
     </main>
 
-    <aside class="sticky-lead is-collapsed" id="lead" data-collapsible>
-      <button class="sticky-toggle" type="button" aria-expanded="false" aria-controls="leadForm">
-        <span class="toggle-text">
-          Start a conversation
-          <span class="toggle-subtext">Avg reply <strong data-response-time>&lt;5 min</strong></span>
-        </span>
-        <span class="toggle-icon" aria-hidden="true"></span>
-      </button>
-      <form class="lead-form is-collapsed" data-lead-form id="leadForm">
+    <aside class="sticky-lead" id="lead">
+      <button class="sticky-toggle" type="button" aria-expanded="true">Start a conversation</button>
+      <form class="lead-form" data-lead-form>
         <h3 data-lead-title>Decode your policy with a specialist</h3>
-        <p class="lead-subtitle" data-lead-subtitle></p>
         <div class="lead-fields" data-lead-fields></div>
         <label class="checkbox">
           <input type="checkbox" name="whatsapp_optin" value="yes" />
