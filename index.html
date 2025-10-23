@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>VOKA 3D Anatomy &amp; Pathology</title>
+    <title>HealthFlo — Cashless Care & Revenue Intelligence</title>
     <meta
       name="description"
-      content="Discover detailed 3D anatomy and pathology models with VOKA. Designed for medical students and professionals who need precise, interactive visualizations."
+      content="HealthFlo aligns patients, hospitals, insurers, and employers on one platform—cashless approvals in hours, denial prevention, and corporate health benefits with real-time dashboards."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,121 +14,129 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="hf-android.css" />   <!-- NEW: Android layer -->
 
-<script defer src="main.js"></script>
-<script defer src="hf-android.js"></script>       <!-- NEW: Android layer -->
+    <!-- Keep existing styles/scripts and Android layer -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="hf-android.css" />
     <script defer src="main.js"></script>
+    <script defer src="hf-android.js"></script>
   </head>
+
   <body>
-<!-- ANDROID BACKGROUND LAYERS -->
-<div class="hf-bg-aurora" aria-hidden="true"></div>
-<div class="hf-bg-noise" aria-hidden="true"></div>
+    <!-- ANDROID BACKGROUND LAYERS (unchanged design) -->
+    <div class="hf-bg-aurora" aria-hidden="true"></div>
+    <div class="hf-bg-noise" aria-hidden="true"></div>
 
-<!-- ANDROID QUICK SETTINGS HEADER -->
-<header class="hf-qs" data-hf-qs>
-  <div class="hf-qs-bar">
-    <div class="hf-qs-left">
-      <span class="hf-qs-time" data-hf-qstime>09:41</span>
-    </div>
-    <button class="hf-qs-toggle hf-ripple" data-hf-qstoggle aria-label="Open Quick Settings">
-      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-        <path d="M6 9l6 6 6-6" fill="none" stroke="#e9edf7" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </button>
-    <div class="hf-qs-right"></div>
-  </div>
-
-  <div class="hf-qs-panel" data-hf-qspanel>
-    <div class="hf-qs-grabber" data-hf-qsdrag><span></span></div>
-
-    <div class="hf-qs-tiles">
-      <button class="hf-qs-tile hf-ripple is-on" data-hf-tile data-target="#services">
-        <div class="ico"></div><span>Services</span>
-      </button>
-      <button class="hf-qs-tile hf-ripple" data-hf-tile data-target="#atlas">
-        <div class="ico"></div><span>Atlas</span>
-      </button>
-      <button class="hf-qs-tile hf-ripple" data-hf-tile data-target="#contact">
-        <div class="ico"></div><span>Contact</span>
-      </button>
-    </div>
-
-    <div class="hf-qs-controls">
-      <div class="hf-qs-slider">
-        <input type="range" min="30" max="110" value="90" step="1" data-hf-brightness />
+    <!-- ANDROID QUICK SETTINGS HEADER -->
+    <header class="hf-qs" data-hf-qs>
+      <div class="hf-qs-bar">
+        <div class="hf-qs-left">
+          <span class="hf-qs-time" data-hf-qstime>09:41</span>
+        </div>
+        <button
+          class="hf-qs-toggle hf-ripple"
+          data-hf-qstoggle
+          aria-label="Open Quick Settings"
+        >
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path
+              d="M6 9l6 6 6-6"
+              fill="none"
+              stroke="#e9edf7"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+        <div class="hf-qs-right"></div>
       </div>
-    </div>
-  </div>
-</header>
-<div class="hf-qs-scrim" data-hf-scrim hidden></div>
-    
+
+      <div class="hf-qs-panel" data-hf-qspanel>
+        <div class="hf-qs-grabber" data-hf-qsdrag><span></span></div>
+
+        <div class="hf-qs-tiles">
+          <button class="hf-qs-tile hf-ripple is-on" data-hf-tile data-target="#services">
+            <div class="ico"></div><span>Solutions</span>
+          </button>
+          <button class="hf-qs-tile hf-ripple" data-hf-tile data-target="#atlas">
+            <div class="ico"></div><span>Products</span>
+          </button>
+          <button class="hf-qs-tile hf-ripple" data-hf-tile data-target="#contact">
+            <div class="ico"></div><span>Contact</span>
+          </button>
+        </div>
+
+        <div class="hf-qs-controls">
+          <div class="hf-qs-slider">
+            <input type="range" min="30" max="110" value="90" step="1" data-hf-brightness />
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="hf-qs-scrim" data-hf-scrim hidden></div>
+
+    <!-- SITE HEADER (keep layout; text only updated) -->
     <header class="site-header">
       <div class="container header-inner">
-<a class="logo hf-brand" href="#top" aria-label="HealthFlo">
-  <span class="hf-dot" aria-hidden="true"></span>
-  <span class="hf-word">HealthFlo</span>
-</a>
+        <a class="logo hf-brand" href="#top" aria-label="HealthFlo">
+          <span class="hf-dot" aria-hidden="true"></span>
+          <span class="hf-word">HealthFlo</span>
+        </a>
+
         <nav class="primary-nav" aria-label="Primary">
           <ul>
-            <li><a href="#services">3D medical animation</a></li>
-            <li><a href="#services">Modeling &amp; Simulation</a></li>
-            <li><a href="#atlas">3D Atlas</a></li>
-            <li><a href="#resources">Medical Wiki</a></li>
+            <li><a href="#services">Solutions</a></li>
+            <li><a href="#services">For Hospitals</a></li>
+            <li><a href="#atlas">For Patients</a></li>
+            <li><a href="#resources">For Insurers &amp; Employers</a></li>
           </ul>
         </nav>
+
         <div class="header-actions">
-          <a class="btn btn-primary" href="#contact">Get in touch</a>
+          <a class="btn btn-primary" href="#contact">Book a demo</a>
           <button
             class="nav-toggle"
             type="button"
             aria-label="Toggle navigation"
             aria-expanded="false"
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
           </button>
         </div>
       </div>
     </header>
 
     <main>
+      <!-- HERO -->
       <section class="hero" id="top">
         <div class="container hero-inner">
           <div class="hero-content">
             <div class="hero-tags" role="list">
-              <span role="listitem">3D medical animation</span>
-              <span role="listitem">Modeling &amp; Simulation</span>
-              <span role="listitem">3D Atlas</span>
-              <span role="listitem">Medical Wiki</span>
+              <span role="listitem">Cashless approvals</span>
+              <span role="listitem">RCM cockpit</span>
+              <span role="listitem">Policy decoder</span>
+              <span role="listitem">Corporate health</span>
             </div>
-            <h1>VOKA 3D Anatomy &amp; Pathology</h1>
+            <h1>Healthcare that just works — cashless, predictable, transparent.</h1>
             <p>
-              Designed to make medical education better. Explore ultra-detailed 3D
-              anatomy and pathology models with clinically accurate descriptions
-              and intuitive interaction tools.
+              HealthFlo connects hospitals, patients, insurers, and employers to move
+              from paperwork and delays to fast cashless care, accurate bills, and
+              live claim status.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact">Get in touch</a>
-              <a class="btn btn-secondary" href="#guide">Watch user guide</a>
+              <a class="btn btn-primary" href="#paths">See a live walkthrough</a>
+              <a class="btn btn-secondary" href="#guide">Decode my policy (demo)</a>
             </div>
+
+            <!-- (Optional) store badges can remain; they’ll act as secondary proof -->
             <div class="app-badges">
-              <a
-                href="https://apps.apple.com/"
-                aria-label="Download on the App Store"
-              >
+              <a href="https://apps.apple.com/" aria-label="Download on the App Store">
                 <img
                   src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
                   alt="App Store badge"
                 />
               </a>
-              <a
-                href="https://play.google.com/store"
-                aria-label="Get it on Google Play"
-              >
+              <a href="https://play.google.com/store" aria-label="Get it on Google Play">
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                   alt="Google Play badge"
@@ -136,243 +144,252 @@
               </a>
             </div>
           </div>
+
           <div class="hero-visual" aria-hidden="true">
             <img
               src="https://storage.googleapis.com/dev_resources_voka_io_303011/3d-atlas/approved_heart.webp"
-              alt="Detailed 3D model of a human heart"
+              alt="Abstract healthcare visualization"
             />
           </div>
         </div>
       </section>
 
+      <!-- SERVICES / SOLUTIONS -->
       <section class="discovery" id="services">
         <div class="container discovery-inner">
           <div class="discovery-copy">
-            <h2>Discover the medical accuracy. Explore the model</h2>
+            <h2>Pick your cockpit. Outcomes follow.</h2>
             <p>
-              Every VOKA model is crafted in partnership with medical experts and
-              validated across multiple review stages. Zoom, rotate and inspect
-              anatomy with unmatched clarity for confident teaching and learning.
+              We orchestrate intake, eligibility, cashless, billing, and denial
+              prevention with one pane of glass for each stakeholder.
             </p>
-            <a class="btn btn-secondary" href="#atlas">Explore atlas</a>
+            <a class="btn btn-secondary" href="#atlas">Explore solutions</a>
           </div>
-          <div class="discovery-visual">
+          <div class="discovery-visual" aria-hidden="true">
             <img
               src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/preview.webp"
-              alt="Laptop displaying an interactive anatomy model"
+              alt=""
             />
           </div>
         </div>
       </section>
 
+      <!-- PRODUCTS GRID (repurposed from “Normal anatomy / Atlas”) -->
       <section class="normal-anatomy" id="atlas">
         <div class="container">
           <div class="section-heading">
-            <h2>Your 3D guide to normal anatomy</h2>
-            <p>Deep, structured coverage for every level of medical training.</p>
+            <h2>Products that remove friction</h2>
+            <p>Modular, persona-aware tools that fit your workflows today.</p>
           </div>
+
           <div class="card-grid">
             <article class="feature-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-1.webp"
-                alt="Regional anatomy illustration"
+                alt="Policy & Coverage Decoder"
               />
               <div class="feature-content">
-                <h3>Regional anatomy</h3>
+                <h3>Policy &amp; Coverage Decoder</h3>
                 <p>
-                  Study male and female anatomy by region, visualize the
-                  interconnected structures—skin, muscles, vessels, nerves, bones,
-                  and joints.
+                  Upload a policy and instantly see room rent caps, co-pays, PED
+                  wait periods, and non-payables.
                 </p>
-                <span class="meta">237 3D models</span>
+                <span class="meta">Patients · Concierge</span>
               </div>
             </article>
+
             <article class="feature-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-2.webp"
-                alt="Systemic anatomy illustration"
+                alt="Cashless Everywhere"
               />
               <div class="feature-content">
-                <h3>Systemic anatomy</h3>
+                <h3>Cashless Everywhere</h3>
                 <p>
-                  Explore the human body by system, gain a deep understanding of
-                  each system's individual components and functions.
+                  Compliant pre-auth kits, TPA follow-ups, and discharge checklists
+                  to turn days into hours.
                 </p>
-                <span class="meta">83 3D models</span>
+                <span class="meta">Hospitals · RCM</span>
               </div>
             </article>
+
             <article class="feature-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-3.webp"
-                alt="Embryology illustration"
+                alt="RCM Cockpit"
               />
               <div class="feature-content">
-                <h3>Embryology</h3>
+                <h3>RCM Cockpit</h3>
                 <p>
-                  Observe human development in precise detail. Move from
-                  blastocyst to birth—track the body’s transformation, stage by
-                  stage.
+                  Receivables, SLAs, denials, and exception heatmaps with proactive
+                  nudges.
                 </p>
-                <span class="meta">19 3D models</span>
+                <span class="meta">Hospitals · Finance</span>
               </div>
             </article>
+
             <article class="feature-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-4.webp"
-                alt="Microanatomy illustration"
+                alt="Corporate Health Hub"
               />
               <div class="feature-content">
-                <h3>Microanatomy</h3>
+                <h3>Corporate Health Hub</h3>
                 <p>
-                  Navigate the body's microanatomy, explore life at its smallest
-                  scale. Zoom in from whole organs to the cellular and
-                  subcellular worlds.
+                  Plan design, enrollment, e-cards, cashless helpdesk, and HR
+                  utilization analytics.
                 </p>
-                <span class="meta">48 3D models</span>
+                <span class="meta">Employers · Benefits</span>
               </div>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- USE CASES GRID (repurposed from “Pathology”) -->
       <section class="pathology">
         <div class="container">
           <div class="section-heading">
-            <h2>Pathology: moving from normal to clinical</h2>
-            <p>Compare healthy and pathological anatomy with curated model sets.</p>
+            <h2>Where HealthFlo shines</h2>
+            <p>Battle-tested in high-impact hospital and corporate scenarios.</p>
           </div>
+
           <div class="pathology-grid">
             <article class="mini-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-5.webp"
-                alt="Congenital heart defects"
+                alt=""
               />
               <div>
-                <h3>Congenital Heart Defects</h3>
-                <span>58 3D models</span>
+                <h3>Emergency cashless intake</h3>
+                <span>45s median pre-auth</span>
               </div>
             </article>
+
             <article class="mini-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-6.webp"
-                alt="Dentistry"
+                alt=""
               />
               <div>
-                <h3>Dentistry</h3>
-                <span>105 3D models</span>
+                <h3>Elective surgery packages</h3>
+                <span>Transparent bundles</span>
               </div>
             </article>
+
             <article class="mini-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-7.webp"
-                alt="Acquired heart diseases"
+                alt=""
               />
               <div>
-                <h3>Acquired Heart Diseases</h3>
-                <span>72 3D models</span>
+                <h3>Denial recovery playbooks</h3>
+                <span>98% target recovery</span>
               </div>
             </article>
+
             <article class="mini-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-8.webp"
-                alt="Obstetrics"
+                alt=""
               />
               <div>
-                <h3>Obstetrics</h3>
-                <span>17 3D models</span>
+                <h3>Network empanelment ops</h3>
+                <span>20+ payers</span>
               </div>
             </article>
+
             <article class="mini-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-9.webp"
-                alt="Gynecology"
+                alt=""
               />
               <div>
-                <h3>Gynecology</h3>
-                <span>33 3D models</span>
+                <h3>Tariff &amp; package governance</h3>
+                <span>Zero mismatch</span>
               </div>
             </article>
+
             <article class="mini-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-10.webp"
-                alt="Breast neoplasms"
+                alt=""
               />
               <div>
-                <h3>Breast Neoplasms</h3>
-                <span>73 3D models</span>
+                <h3>Corporate plan rollout</h3>
+                <span>E-cards in minutes</span>
               </div>
             </article>
+
             <article class="mini-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-11.webp"
-                alt="Endocrinology"
+                alt=""
               />
               <div>
-                <h3>Endocrinology</h3>
-                <span>32 3D models</span>
+                <h3>Employee helpdesk</h3>
+                <span>WhatsApp updates</span>
               </div>
             </article>
+
             <article class="mini-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-12.webp"
-                alt="CNS and PNS disorders"
+                alt=""
               />
               <div>
-                <h3>CNS and PNS Disorders</h3>
-                <span>52 3D models</span>
+                <h3>Policy telemetry</h3>
+                <span>Live limits &amp; riders</span>
               </div>
             </article>
+
             <article class="mini-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-13.webp"
-                alt="CNS and PNS tumors"
+                alt=""
               />
               <div>
-                <h3>CNS and PNS Tumors</h3>
-                <span>63 3D models</span>
+                <h3>Audit &amp; compliance</h3>
+                <span>Quarterly reviews</span>
               </div>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- KNOWLEDGE / RESOURCES -->
       <section class="knowledge" id="resources">
         <div class="container knowledge-grid">
           <article class="knowledge-card">
             <div class="card-copy">
-              <h2>Clinical knowledge hub</h2>
+              <h2>Clinical-grade documentation &amp; SOPs</h2>
               <p>
-                Expert-reviewed articles on pathologies and modern treatment
-                methods. Updated continuously to keep your curriculum current.
+                Maker-checker checklists, insurer-specific rules, and appeal
+                templates you can deploy on day one.
               </p>
               <a class="btn btn-secondary" href="#">Explore</a>
             </div>
             <img
               src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/Clinical%20knowledge%20hub%20bg.webp"
-              alt="Clinical knowledge hub illustration"
+              alt="Operations documentation preview"
             />
           </article>
+
           <article class="knowledge-card free-app">
             <div class="card-copy">
-              <h2>Try the app for free</h2>
+              <h2>Try it free</h2>
               <p>
-                Get access to all 3D models and atlas functions after
-                registration—absolutely free.
+                Preview the policy decoder, sample dashboards, and denial playbooks
+                with test data.
               </p>
               <div class="app-badges">
-                <a
-                  href="https://apps.apple.com/"
-                  aria-label="Download on the App Store"
-                >
+                <a href="https://apps.apple.com/" aria-label="Download on the App Store">
                   <img
                     src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
                     alt="App Store badge"
                   />
                 </a>
-                <a
-                  href="https://play.google.com/store"
-                  aria-label="Get it on Google Play"
-                >
+                <a href="https://play.google.com/store" aria-label="Get it on Google Play">
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                     alt="Google Play badge"
@@ -382,128 +399,133 @@
             </div>
             <img
               src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/iPhone%20XS%20Longscroll%20Mockup%201.webp"
-              alt="VOKA mobile app preview"
+              alt="HealthFlo mobile preview"
             />
           </article>
         </div>
       </section>
 
+      <!-- GUIDE / HOW IT WORKS -->
       <section class="guide" id="guide">
         <div class="container guide-inner">
           <div class="guide-header">
-            <h2>Discover how to use VOKA – watch our user guide</h2>
-            <p>
-              Quick tips on navigation, model manipulation, and classroom
-              integration. Learn the tools that keep your students engaged.
-            </p>
+            <h2>How HealthFlo works (3-minute tour)</h2>
+            <p>From intake to cash-in with fewer surprises.</p>
           </div>
+
           <div class="guide-steps">
             <article class="step-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/guide-1.webp"
-                alt="Zoom feature"
+                alt="Intake and eligibility"
               />
-              <h3>Zoom &amp; isolate</h3>
-              <p>Focus on the structures you need in seconds.</p>
+              <h3>Intake &amp; eligibility</h3>
+              <p>Pre-visit triage, document capture, and policy verification.</p>
             </article>
+
             <article class="step-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/guide-2.webp"
-                alt="Cross section feature"
+                alt="Pre-auth and cashless"
               />
-              <h3>Explore cross-sections</h3>
-              <p>Layer by layer views reveal every critical detail.</p>
+              <h3>Pre-auth &amp; cashless</h3>
+              <p>AI-prepared packs and insurer-aligned checklists for fast approvals.</p>
             </article>
+
             <article class="step-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/guide-3.webp"
-                alt="Annotation feature"
+                alt="Billing and RCM"
               />
-              <h3>Annotate &amp; share</h3>
-              <p>Highlight key regions and share them instantly.</p>
+              <h3>Billing &amp; RCM</h3>
+              <p>Clean coding, tariff sync, and exception alerts reduce under-billing.</p>
             </article>
+
             <article class="step-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/guide-4.webp"
-                alt="Collaboration feature"
+                alt="Denial prevention"
               />
-              <h3>Collaborate live</h3>
-              <p>Teach, present, and interact together from anywhere.</p>
+              <h3>Denial prevention</h3>
+              <p>Reason codes, owners, and appeal templates that recover revenue.</p>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- ASSURANCE / TRUST -->
       <section class="assurance">
         <div class="container assurance-inner">
           <div class="assurance-copy">
-            <h2>
-              We say «medically accurate» and we mean it
-            </h2>
+            <h2>We say “compliant &amp; reliable” — and we prove it</h2>
             <p>
-              Comprehensive three-level content quality assurance approach keeps
-              every model aligned with the latest clinical understanding.
+              IRDAI-aligned processes, role-based access, encrypted data flows, and
+              quarterly audits underpin every workflow.
             </p>
           </div>
+
           <div class="assurance-cards">
             <article>
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/fluent_star-12-filled.svg"
-                alt="Star icon"
+                alt=""
               />
-              <h3>3D content</h3>
-              <p>Created by professional 3D artists and practicing MDs.</p>
+              <h3>Processes</h3>
+              <p>SOPs for pre-auth, discharge, and audits with insurer-specific guardrails.</p>
             </article>
             <article>
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/lucide_text.svg"
-                alt="Text icon"
+                alt=""
               />
-              <h3>Text + localization</h3>
-              <p>Crafted by medical writers, translated for global programs.</p>
+              <h3>Controls</h3>
+              <p>Maker-checker, approval trails, and tariff/package versioning.</p>
             </article>
             <article>
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/grommet-icons_validate.svg"
-                alt="Validation icon"
+                alt=""
               />
-              <h3>Final approval</h3>
-              <p>Every model is reviewed and approved by VOKA medical experts.</p>
+              <h3>Outcomes</h3>
+              <p>92% same-day approvals; 45s pre-auth median; 35% AR-days reduction.*</p>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- BY ROLE (repurpose “Atlas fields”) -->
       <section class="atlas-fields">
         <div class="container">
           <div class="section-heading">
-            <h2>Your field, your atlas</h2>
-            <p>Clear, contextual visuals that adapt to your role.</p>
+            <h2>Your role, your cockpit</h2>
+            <p>We tailor flows to how you work—no retraining required.</p>
           </div>
+
           <div class="atlas-grid">
             <article class="atlas-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/your-field-your-atlas-students.webp"
-                alt="Students using VOKA"
+                alt="Patients using HealthFlo"
               />
               <div class="atlas-content">
-                <h3>Students</h3>
+                <h3>Patients &amp; Families</h3>
                 <p>
-                  Build your knowledge library, structure by structure. Uncover
-                  body systems at your fingertips.
+                  Decode coverage, compare packages, and track cashless status without
+                  paperwork chaos.
                 </p>
               </div>
             </article>
+
             <article class="atlas-card">
               <img
                 src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/your-field-your-atlas-doctors.webp"
-                alt="Doctors using VOKA"
+                alt="Hospitals using HealthFlo"
               />
               <div class="atlas-content">
-                <h3>Doctors</h3>
+                <h3>Hospitals &amp; RCM</h3>
                 <p>
-                  Bridge understanding gaps with crystal-clear 3D visuals. Guide
-                  patients through their journey to health.
+                  Predictable cashflows with a claims pipeline, receivables, denial intel,
+                  and insurer SLAs.
                 </p>
               </div>
             </article>
@@ -511,69 +533,77 @@
         </div>
       </section>
 
+      <!-- CORPORATE HEALTH / PARTNERSHIPS (repurpose “University”) -->
       <section class="university">
         <div class="container university-inner">
           <div class="university-copy">
-            <h2>VOKA 3D Anatomy &amp; Pathology for modern university</h2>
+            <h2>Corporate healthcare that teams actually use</h2>
             <p>
-              Adaptable to your teaching environment and accessible on any
-              device, with flexible licensing options designed for universities.
+              Design the right plan, enroll in days, issue e-cards in minutes, and
+              support employees with a live cashless helpdesk.
             </p>
             <div class="university-actions">
-              <a class="btn btn-primary" href="#contact">Learn more</a>
+              <a class="btn btn-primary" href="#contact">Design my plan</a>
             </div>
+
             <ul class="capability-list">
               <li>
                 <img
                   src="https://storage.googleapis.com/dev_resources_voka_io_303011/icons/mage_box-3d-fill.svg"
-                  alt="3D icon"
+                  alt=""
                 />
-                Anatomy tables
+                Plan design &amp; census modeling
               </li>
               <li>
                 <img
                   src="https://storage.googleapis.com/dev_resources_voka_io_303011/icons/jam_language.svg"
-                  alt="Language icon"
+                  alt=""
                 />
-                LMS like Canvas, Moodle, Blackboard &amp; more
+                Fast enrollment &amp; e-cards
               </li>
               <li>
                 <img
                   src="https://storage.googleapis.com/dev_resources_voka_io_303011/icons/Group%201.svg"
-                  alt="Interactive whiteboards icon"
+                  alt=""
                 />
-                Interactive whiteboards
+                Cashless helpdesk &amp; SLAs
               </li>
               <li>
                 <img
                   src="https://storage.googleapis.com/dev_resources_voka_io_303011/icons/Group%202.svg"
-                  alt="Touch displays icon"
+                  alt=""
                 />
-                Touch displays
+                HR utilization analytics
               </li>
               <li>
                 <img
                   src="https://storage.googleapis.com/dev_resources_voka_io_303011/icons/ic_round-table-restaurant.webp"
-                  alt="VR devices icon"
+                  alt=""
                 />
-                VR/AR devices
+                Integrations (HRIS/Payroll)
               </li>
             </ul>
           </div>
+
           <div class="university-visual" aria-hidden="true">
             <img
               src="https://storage.googleapis.com/dev_resources_voka_io_303011/common/university-computers.webp"
-              alt="University computer lab"
+              alt=""
             />
           </div>
         </div>
       </section>
 
+      <!-- CONTACT -->
       <section class="contact" id="contact">
         <div class="container contact-inner">
           <form class="contact-form" action="#" method="post">
-            <h2>Get in touch</h2>
-            <p>Fill out the form and we’ll get back to you once we’ve processed your request.</p>
+            <h2>Talk to a specialist</h2>
+            <p>
+              Tell us who you are and what you want to improve—RCM, cashless, corporate
+              health, or distribution.
+            </p>
+
             <div class="form-grid">
               <label>
                 <span>Name*</span>
@@ -592,46 +622,53 @@
                 <input type="text" name="subject" required />
               </label>
             </div>
+
             <label class="wide">
               <span>Describe your needs in detail</span>
               <textarea name="message" rows="5" placeholder="Your message"></textarea>
             </label>
+
             <div class="file-upload">
               <label>
-                Drop or fill here your files
+                Drop documents here (PNG, JPG, PDF, PPT, MP4 · max 15MB)
                 <input type="file" name="attachment" multiple />
               </label>
-              <p>PNG, JPG, PDF, PPT, WEB, MP4 (max. 15MB)</p>
+              <p>Optional</p>
             </div>
+
             <div class="form-footer">
               <label class="consent">
                 <input type="checkbox" name="consent" required />
                 <span>
-                  By clicking “Send” you agree with the sending and processing of your data.
+                  By clicking “Send”, you agree to the processing of your data and to be
+                  contacted about this request.
                 </span>
               </label>
               <button class="btn btn-primary" type="submit">Send</button>
             </div>
           </form>
+
           <aside class="contact-info">
-            <h3>Let’s bring precision to your projects</h3>
+            <h3>Let’s accelerate your outcomes</h3>
             <p>
-              Explore 3D medical solutions trusted by experts worldwide. We help with:
+              We help hospitals, insurers, and employers launch cashless, improve
+              recovery, and make healthcare painless for patients.
             </p>
             <ul>
-              <li>Access to 3D model library or anatomy atlas</li>
-              <li>Custom medical animations (MoA, MoD, procedures)</li>
-              <li>Partnerships, licensing, and integrations</li>
-              <li>Pricing, billing, technical or support questions</li>
+              <li>RCM cockpit &amp; denial recovery</li>
+              <li>Cashless approvals &amp; discharge checklists</li>
+              <li>Corporate plan design &amp; employee helpdesk</li>
+              <li>Insurer network ops &amp; distribution pilots</li>
             </ul>
             <p class="contact-email">
-              Or contact us directly: <a href="mailto:info@voka.io">info@voka.io</a>
+              Prefer email? <a href="mailto:hello@healthflo.in">hello@healthflo.in</a>
             </p>
           </aside>
         </div>
       </section>
     </main>
 
+    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="container footer-inner">
         <div class="footer-top">
@@ -639,98 +676,98 @@
             <a class="logo" href="#top">
               <img
                 src="https://voka.io/wp-content/uploads/2025/03/Logo-1.png"
-                alt="VOKA logo"
+                alt="HealthFlo logo"
               />
             </a>
             <p>
-              Advanced 3D anatomy &amp; pathology product and services provider
-              delivering precise visualization and anatomical modeling, AR &amp;
-              VR solutions.
+              Unified healthcare marketplace aligning patients, hospitals, insurers, and
+              employers—cashless approvals, predictable revenue, and transparent journeys.
             </p>
           </div>
+
           <div class="footer-columns">
             <div class="footer-column">
-              <h4>Services</h4>
+              <h4>Solutions</h4>
               <ul>
-                <li><a href="#">3D medical animation</a></li>
-                <li><a href="#">3D medical modelling</a></li>
-                <li><a href="#">AR solutions in healthcare</a></li>
-                <li><a href="#">VR solutions in healthcare</a></li>
+                <li><a href="#atlas">Cashless Everywhere</a></li>
+                <li><a href="#atlas">RCM Cockpit</a></li>
+                <li><a href="#atlas">Policy Decoder</a></li>
+                <li><a href="#atlas">Corporate Health</a></li>
               </ul>
             </div>
+
             <div class="footer-column">
-              <h4>3D Atlas</h4>
+              <h4>By Role</h4>
               <ul>
-                <li><a href="#atlas">Doctors</a></li>
-                <li><a href="#atlas">Students</a></li>
-                <li><a href="#atlas">Universities</a></li>
-                <li><a href="#atlas">Bloggers</a></li>
-                <li><a href="#">Download</a></li>
+                <li><a href="#atlas">Patients</a></li>
+                <li><a href="#atlas">Hospitals</a></li>
+                <li><a href="#resources">Insurers</a></li>
+                <li><a href="#university">Employers</a></li>
               </ul>
-            </div>
-            <div class="footer-column">
               <h4>Resources</h4>
               <ul>
-                <li><a href="#resources">Medical Wiki</a></li>
+                <li><a href="#resources">Playbooks</a></li>
+                <li><a href="#resources">Case studies</a></li>
               </ul>
+            </div>
+
+            <div class="footer-column">
               <h4>Terms &amp; policies</h4>
               <ul>
                 <li><a href="#">Privacy policy</a></li>
                 <li><a href="#">Terms of use</a></li>
-                <li><a href="#">Publishing principles</a></li>
+                <li><a href="#">Accessibility</a></li>
               </ul>
             </div>
+
             <div class="footer-column">
               <h4>Information</h4>
               <ul>
                 <li><a href="#">About us</a></li>
-                <li><a href="#">Portfolio</a></li>
                 <li><a href="#">Articles</a></li>
                 <li><a href="#">Cases</a></li>
               </ul>
-              <a class="btn btn-secondary" href="#contact">Contact us</a>
+              <a class="btn btn-secondary" href="#contact">Book a demo</a>
             </div>
           </div>
         </div>
+
         <div class="footer-bottom">
           <div>
-            <a href="mailto:info@voka.io">info@voka.io</a>
-            <span>+1 (415) 915-1442</span>
+            <a href="mailto:hello@healthflo.in">hello@healthflo.in</a>
+            <span>+91 99402 07670</span>
           </div>
-          <address>
-            USA: St. Petersburg, FL 33702, 7901 4th St N STE 300
-          </address>
+          <address>India HQ: Chennai · Bengaluru · Hyderabad</address>
         </div>
       </div>
     </footer>
-    
+
     <!-- TOASTS -->
-<div class="hf-toasts" id="hf-toasts" aria-live="polite" aria-atomic="true"></div>
+    <div class="hf-toasts" id="hf-toasts" aria-live="polite" aria-atomic="true"></div>
 
-<!-- APP/WIDGET SHEET -->
-<div class="hf-app-sheet" id="hfAppSheet" aria-modal="true" role="dialog">
-  <div class="hf-app-scrim" data-hf-app-close></div>
-  <div class="hf-app-window">
-    <div class="hf-app-head">
-      <div class="hf-app-title">
-        <span class="mini" id="hfAppIcon"></span>
-        <span id="hfAppTitle">App</span>
+    <!-- APP/WIDGET SHEET -->
+    <div class="hf-app-sheet" id="hfAppSheet" aria-modal="true" role="dialog">
+      <div class="hf-app-scrim" data-hf-app-close></div>
+      <div class="hf-app-window">
+        <div class="hf-app-head">
+          <div class="hf-app-title">
+            <span class="mini" id="hfAppIcon"></span>
+            <span id="hfAppTitle">App</span>
+          </div>
+          <button class="hf-app-close hf-ripple" data-hf-app-close aria-label="Close">✕</button>
+        </div>
+        <div class="hf-app-tabs" role="tablist">
+          <button class="hf-app-tab hf-ripple" role="tab" aria-selected="true" data-tab="overview">Overview</button>
+          <button class="hf-app-tab hf-ripple" role="tab" aria-selected="false" data-tab="activity">Activity</button>
+          <button class="hf-app-tab hf-ripple" role="tab" aria-selected="false" data-tab="settings">Settings</button>
+        </div>
+        <div class="hf-app-body" id="hfAppBody"></div>
       </div>
-      <button class="hf-app-close hf-ripple" data-hf-app-close aria-label="Close">✕</button>
     </div>
-    <div class="hf-app-tabs" role="tablist">
-      <button class="hf-app-tab hf-ripple" role="tab" aria-selected="true" data-tab="overview">Overview</button>
-      <button class="hf-app-tab hf-ripple" role="tab" aria-selected="false" data-tab="activity">Activity</button>
-      <button class="hf-app-tab hf-ripple" role="tab" aria-selected="false" data-tab="settings">Settings</button>
-    </div>
-    <div class="hf-app-body" id="hfAppBody"></div>
-  </div>
-</div>
 
-<!-- SFX (swap any time) -->
-<audio id="hf-sfx-header" preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-click-900.mp3"></audio>
-<audio id="hf-sfx-click"  preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-modern-technology-select-3124.mp3"></audio>
-<audio id="hf-sfx-close"  preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-menu-back-3077.mp3"></audio>
-
+    <!-- SFX -->
+    <audio id="hf-sfx-header" preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-click-900.mp3"></audio>
+    <audio id="hf-sfx-click"  preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-modern-technology-select-3124.mp3"></audio>
+    <audio id="hf-sfx-close"  preload="auto" src="https://assets.mixkit.co/sfx/preview/mixkit-menu-back-3077.mp3"></audio>
   </body>
 </html>
