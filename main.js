@@ -7,8 +7,30 @@ const track = (event, props = {}) => {
   dataLayer.push({ event, ...props, timestamp: Date.now() });
 };
 
-const prefersReducedMotion = () =>
-  window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const createStorage = () => {
+  try {
+    if (!('localStorage' in window)) throw new Error('localStorage unavailable');
+    const key = '__healthflo__';
+    window.localStorage.setItem(key, key);
+    window.localStorage.removeItem(key);
+    return window.localStorage;
+  } catch {
+    return {
+      getItem: () => null,
+      setItem: () => {},
+      removeItem: () => {}
+    };
+  }
+};
+
+const storage = createStorage();
+
+const motionMediaQuery =
+  typeof window.matchMedia === 'function'
+    ? window.matchMedia('(prefers-reduced-motion: reduce)')
+    : null;
+
+const prefersReducedMotion = () => motionMediaQuery?.matches ?? false;
 
 const heroCanvas = $('#heroCanvas');
 let heroCtx = null;
@@ -714,6 +736,7 @@ const applyPersona = (persona, trackEvent = false) => {
   renderLeadForm(config);
   renderAI(config);
   updateWhatsAppLinks(config);
+  storage.setItem('healthflo_persona', persona);
   localStorage.setItem('healthflo_persona', persona);
   if (trackEvent) track('persona_selected', { role: persona });
   togglePersonaSections(persona);
@@ -783,7 +806,7 @@ const initNav = () => {
 };
 
 const initTheme = () => {
-  const stored = localStorage.getItem('healthflo_theme');
+  const stored = storage.getItem('healthflo_theme');
   if (stored && ['white', 'dark', 'matte', 'cosmic'].includes(stored)) {
     body.dataset.theme = stored;
     themeButtons.forEach((btn) => {
@@ -800,7 +823,6 @@ const initTheme = () => {
         b.classList.toggle('is-active', active);
         b.setAttribute('aria-checked', String(active));
       });
-      localStorage.setItem('healthflo_theme', theme);
       track('theme_changed', { theme });
     });
   });
@@ -900,33 +922,42 @@ const initWhatsAppOptin = () => {
 };
 
 const initHeroAnimation = () => {
-  if (!heroCanvas || prefersReducedMotion()) {
-    if (heroCanvas) {
-      heroCanvas.style.background = 'linear-gradient(135deg, rgba(37,99,235,0.25), transparent)';
+  if (!heroCanvas) return;
+
+  const fallbackBackground = 'linear-gradient(135deg, rgba(37,99,235,0.25), transparent)';
+
+  const ensureContext = () => {
+    if (!heroCtx) {
+      heroCtx = heroCanvas.getContext('2d');
     }
-    return;
-  }
-  heroCtx = heroCanvas.getContext('2d');
-  const resize = () => {
-    const dpr = window.devicePixelRatio || 1;
-    const { clientWidth, clientHeight } = heroCanvas;
-    heroCanvas.width = clientWidth * dpr;
-    heroCanvas.height = clientHeight * dpr;
-    heroCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    createParticles(clientWidth, clientHeight);
-  };
+};
+
   const createParticles = (width, height) => {
-    const count = 80;
+    const safeWidth = Math.max(width, 1);
+    const safeHeight = Math.max(height, 1);
+    const count = safeWidth < 640 ? 50 : 80;
     heroParticles = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
+      x: Math.random() * safeWidth,
+      y: Math.random() * safeHeight,
       r: Math.random() * 2 + 0.6,
       speed: Math.random() * 0.35 + 0.15,
       angle: Math.random() * Math.PI * 2,
       alpha: Math.random() * 0.5 + 0.25
     }));
   };
+
+  const resizeCanvas = () => {
+    if (!heroCtx) return;
+    const dpr = window.devicePixelRatio || 1;
+    const { clientWidth, clientHeight } = heroCanvas;
+    heroCanvas.width = Math.max(clientWidth * dpr, 1);
+    heroCanvas.height = Math.max(clientHeight * dpr, 1);
+    heroCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    createParticles(clientWidth, clientHeight);
+  };
+
   const draw = () => {
+    if (!heroCtx) return;
     const { clientWidth: width, clientHeight: height } = heroCanvas;
     heroCtx.clearRect(0, 0, width, height);
     const gradient = heroCtx.createRadialGradient(
@@ -964,9 +995,47 @@ const initHeroAnimation = () => {
 
     heroAnimationId = requestAnimationFrame(draw);
   };
-  resize();
-  draw();
-  window.addEventListener('resize', resize);
+
+  const ensureAnimationState = () => {
+    ensureContext();
+    if (!heroParticles.length) {
+      resizeCanvas();
+    }
+  };
+
+  const stopAnimation = () => {
+    if (heroAnimationId !== null) {
+      cancelAnimationFrame(heroAnimationId);
+      heroAnimationId = null;
+    }
+  };
+
+  const startAnimation = () => {
+    if (heroAnimationId !== null || prefersReducedMotion()) return;
+    ensureAnimationState();
+    heroCanvas.style.background = '';
+    heroAnimationId = requestAnimationFrame(draw);
+  };
+
+  const handleVisibilityChange = () => {
+    if (document.hidden) {
+      stopAnimation();
+    } else {
+      startAnimation();
+    }
+  };
+
+  if (prefersReducedMotion()) {
+    heroCanvas.style.background = fallbackBackground;
+  } else {
+    startAnimation();
+  }
+
+  window.addEventListener('resize', () => {
+    if (prefersReducedMotion()) return;
+    ensureContext();
+    resizeCanvas();
+  });
   window.addEventListener('pointermove', (event) => {
     const rect = heroCanvas.getBoundingClientRect();
     heroPointer = {
@@ -974,13 +1043,33 @@ const initHeroAnimation = () => {
       y: event.clientY - rect.top - rect.height / 2
     };
   });
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+  window.addEventListener('pagehide', stopAnimation);
+  window.addEventListener('pageshow', () => startAnimation());
+
+  if (motionMediaQuery) {
+    const handleMotionPreference = (event) => {
+      if (event.matches) {
+        stopAnimation();
+        heroCanvas.style.background = fallbackBackground;
+      } else {
+        heroParticles = [];
+        startAnimation();
+      }
+    };
+    if (typeof motionMediaQuery.addEventListener === 'function') {
+      motionMediaQuery.addEventListener('change', handleMotionPreference);
+    } else if (typeof motionMediaQuery.addListener === 'function') {
+      motionMediaQuery.addListener(handleMotionPreference);
+    }
+  }
 };
 
 const initPersonaFromSource = () => {
   const params = new URLSearchParams(window.location.search);
   const utmRaw = params.get('utm_persona');
   const utmPersona = utmRaw ? utmRaw.toLowerCase() : null;
-  const stored = localStorage.getItem('healthflo_persona');
+  const stored = storage.getItem('healthflo_persona');
   const fallback = stored && personaConfig[stored] ? stored : 'patient';
   const persona = utmPersona && personaConfig[utmPersona]?.label ? utmPersona : fallback;
   applyPersona(persona);
@@ -996,6 +1085,25 @@ const initStickyToggle = () => {
   });
 };
 
+const initServiceWorker = () => {
+  if (!('serviceWorker' in navigator)) return;
+  const register = () => {
+    navigator.serviceWorker
+      .register('sw.js')
+      .then((registration) =>
+        track('service_worker_registered', { scope: registration.scope || 'default' })
+      )
+      .catch((error) =>
+        track('service_worker_registration_failed', { message: error?.message || String(error) })
+      );
+  };
+  if (document.readyState === 'complete') {
+    register();
+  } else {
+    window.addEventListener('load', register, { once: true });
+  }
+};
+
 const init = () => {
   initHeader();
   initNav();
@@ -1006,6 +1114,7 @@ const init = () => {
   initTracking();
   initHeroAnimation();
   initStickyToggle();
+  initServiceWorker();
   initPersonaFromSource();
   initWhatsAppOptin();
   observeReveal($$('.metric-panel, .guarantees'));
