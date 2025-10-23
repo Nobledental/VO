@@ -1,4 +1,4 @@
-const CACHE_NAME = 'healthflo-app-v1';
+const CACHE_NAME = 'healthflo-app-v2';
 const OFFLINE_URL = 'offline.html';
 const APP_SHELL = [
   './',
@@ -31,30 +31,43 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-const fromNetwork = (request) =>
-  fetch(request)
-    .then((response) => {
-      const copy = response.clone();
-      caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
-      return response;
-    })
-    .catch(() => caches.match(request));
+const fromNetwork = async (request) => {
+  const response = await fetch(request);
+  if (!response || response.status !== 200 || response.type === 'opaque') {
+    return response;
+  }
+  const cache = await caches.open(CACHE_NAME);
+  await cache.put(request, response.clone());
+  return response;
+};
 
-self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
-  const request = event.request;
+const handleFetch = async (request) => {
   const url = new URL(request.url);
 
   if (request.mode === 'navigate') {
-    event.respondWith(
-      fromNetwork(request).catch(() => caches.match(OFFLINE_URL))
-    );
-    return;
+    try {
+      return await fromNetwork(request);
+    } catch (error) {
+      return (await caches.match(OFFLINE_URL)) || (await caches.match(request)) || Promise.reject(error);
+    }
   }
 
   if (url.origin === self.location.origin) {
-    event.respondWith(
-      caches.match(request).then((cached) => cached || fromNetwork(request).catch(() => caches.match(OFFLINE_URL)))
-    );
+    const cached = await caches.match(request);
+    if (cached) return cached;
+    try {
+      return await fromNetwork(request);
+    } catch (error) {
+      const offline = await caches.match(OFFLINE_URL);
+      if (offline && request.destination === 'document') return offline;
+      return cached || Promise.reject(error);
+    }
   }
+
+  return fetch(request);
+};
+
+self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return;
+  event.respondWith(handleFetch(event.request));
 });
