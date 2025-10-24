@@ -84,26 +84,54 @@
           <div class="hero-copy">
             <p class="hero-support">Healthcare that just works — clear prices, faster cashless, and predictable claims.</p>
             <p class="hero-proof">570+ NABH partners • 92% same-day approvals • 45s pre-auth median • 150k+ claims navigated</p>
-            <div class="persona-selector" role="group" aria-label="Select persona">
-              <button class="persona-chip" data-persona="patient">
+            <div class="persona-selector" role="radiogroup" aria-label="Select persona">
+              <button
+                class="persona-chip"
+                data-persona="patient"
+                role="radio"
+                aria-checked="true"
+                tabindex="0"
+                aria-controls="section-patient"
+              >
                 <span class="persona-icon" aria-hidden="true">
                   <svg viewBox="0 0 32 32" role="presentation"><path d="M16 16c3.6 0 6.5-2.9 6.5-6.5S19.6 3 16 3s-6.5 2.9-6.5 6.5S12.4 16 16 16zm0 3c-5.5 0-10 3.6-10 8v2h20v-2c0-4.4-4.5-8-10-8z" /></svg>
                 </span>
                 <span class="persona-label">I’m a Patient</span>
               </button>
-              <button class="persona-chip" data-persona="hospital">
+              <button
+                class="persona-chip"
+                data-persona="hospital"
+                role="radio"
+                aria-checked="false"
+                tabindex="-1"
+                aria-controls="section-patient"
+              >
                 <span class="persona-icon" aria-hidden="true">
                   <svg viewBox="0 0 32 32" role="presentation"><path d="M6 4h20v24H6zm11 6v-3h-2v3h-3v2h3v3h2v-3h3v-2zm-9 4v10h4V14zm7 0v10h4V14zm7 0v10h4V14z" /></svg>
                 </span>
                 <span class="persona-label">I represent a Hospital</span>
               </button>
-              <button class="persona-chip" data-persona="insurer">
+              <button
+                class="persona-chip"
+                data-persona="insurer"
+                role="radio"
+                aria-checked="false"
+                tabindex="-1"
+                aria-controls="section-patient"
+              >
                 <span class="persona-icon" aria-hidden="true">
                   <svg viewBox="0 0 32 32" role="presentation"><path d="M4 7l12-5 12 5v9c0 7-5.4 13.4-12 15-6.6-1.6-12-8-12-15zm12 18.9c4.7-1.4 8-6 8-9.9V9.3L16 5.8 8 9.3V16c0 3.9 3.3 8.5 8 9.9z" /></svg>
                 </span>
                 <span class="persona-label">I’m an Insurer</span>
               </button>
-              <button class="persona-chip" data-persona="employer">
+              <button
+                class="persona-chip"
+                data-persona="employer"
+                role="radio"
+                aria-checked="false"
+                tabindex="-1"
+                aria-controls="section-patient"
+              >
                 <span class="persona-icon" aria-hidden="true">
                   <svg viewBox="0 0 32 32" role="presentation"><path d="M6 6h20v5h-4v-2H10v2H6zm0 7h20v13H6zm6 3v3h8v-3z" /></svg>
                 </span>
@@ -202,7 +230,7 @@
         </div>
       </section>
 
-      <section class="packages" id="packages" data-persona-section="patient" hidden aria-hidden="true">
+      <section class="packages" id="section-patient" data-persona-section="patient" hidden aria-hidden="true">
         <div class="container">
           <div class="section-heading">
             <h2>Get care on your terms</h2>
@@ -338,9 +366,20 @@
       <button class="ai-button" type="button" data-track="cta" data-track-label="ai_copilot">AI Copilot</button>
     </div>
 
-    <div class="ai-modal" data-ai-modal aria-hidden="true" role="dialog" aria-labelledby="aiModalTitle">
+    <div
+      class="ai-modal"
+      data-ai-modal
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="aiModalTitle"
+      aria-describedby="aiModalDesc"
+    >
       <div class="ai-modal-backdrop" data-ai-close></div>
       <div class="ai-modal-content">
+        <p id="aiModalDesc" class="sr-only">
+          Upload your policy or pick a prompt to get a plain-language summary.
+        </p>
         <header>
           <h3 id="aiModalTitle">HealthFlo Copilot</h3>
           <button type="button" class="ai-close" data-ai-close aria-label="Close">✕</button>
