@@ -336,6 +336,138 @@ body[data-theme="matte"] .theme-toggle {
   transition: transform var(--transition), opacity var(--transition);
 }
 
+.nav-toggle.is-active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle.is-active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 22, 53, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+  z-index: 90;
+  pointer-events: none;
+}
+
+body.nav-open::before {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.primary-nav.is-open {
+  pointer-events: auto;
+}
+
+@media (max-width: 1080px) {
+  .header-inner {
+    min-height: 80px;
+    gap: 20px;
+  }
+
+  .header-actions {
+    gap: 12px;
+  }
+
+  .theme-chip {
+    padding: 6px 12px;
+  }
+
+  .btn.btn-primary {
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 960px) {
+  body {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .header-inner {
+    min-height: 72px;
+  }
+
+  .primary-nav {
+    position: fixed;
+    top: 88px;
+    right: 16px;
+    left: 16px;
+    background: var(--color-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    opacity: 0;
+    transform: translateY(-12px);
+    visibility: hidden;
+    transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+    pointer-events: none;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    z-index: 120;
+  }
+
+  .primary-nav.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .primary-nav ul {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .primary-nav a {
+    font-size: 1.05rem;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-inner {
+    gap: 16px;
+  }
+
+  .header-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .theme-toggle {
+    order: 1;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn.btn-primary {
+    padding: 11px 18px;
+    font-size: 0.95rem;
+  }
+}
+
 .hero {
   position: relative;
   padding: 140px 0 120px;
