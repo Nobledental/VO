@@ -811,20 +811,35 @@ const initLeadFieldListeners = () => {
   }
 };
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.2 }
-);
+const createRevealObserver = () => {
+  if (typeof window === 'undefined' || typeof window.IntersectionObserver !== 'function') {
+    return null;
+  }
+  return new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+};
 
-const observeReveal = (nodes) => {
-  nodes.forEach((node) => revealObserver.observe(node));
+const revealObserver = createRevealObserver();
+
+const observeReveal = (nodes = []) => {
+  const list = Array.isArray(nodes) ? nodes : Array.from(nodes || []);
+  list.forEach((node) => {
+    if (!node) return;
+    if (revealObserver) {
+      revealObserver.observe(node);
+    } else {
+      node.classList.add('revealed');
+    }
+  });
 };
 
 const initHeader = () => {
@@ -857,6 +872,8 @@ const initTheme = () => {
       btn.classList.toggle('is-active', btn.dataset.themeTarget === stored);
       btn.setAttribute('aria-checked', String(btn.dataset.themeTarget === stored));
     });
+  } else if (body.dataset.theme) {
+    storage.setItem('healthflo_theme', body.dataset.theme);
   }
   themeButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -867,6 +884,7 @@ const initTheme = () => {
         b.classList.toggle('is-active', active);
         b.setAttribute('aria-checked', String(active));
       });
+      storage.setItem('healthflo_theme', theme);
       track('theme_changed', { theme });
     });
   });
