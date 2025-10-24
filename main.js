@@ -37,6 +37,7 @@ let heroCtx = null;
 let heroParticles = [];
 let heroAnimationId = null;
 let heroPointer = { x: 0, y: 0 };
+let heroTick = 0;
 let deferredInstallPrompt = null;
 const installPromptListeners = [];
 
@@ -1076,8 +1077,11 @@ const initHeroAnimation = () => {
       r: Math.random() * 2 + 0.6,
       speed: Math.random() * 0.35 + 0.15,
       angle: Math.random() * Math.PI * 2,
-      alpha: Math.random() * 0.5 + 0.25
+      baseAlpha: Math.random() * 0.35 + 0.2,
+      pulse: Math.random() * Math.PI * 2,
+      drift: Math.random() * 0.02 + 0.005
     }));
+    heroTick = 0;
   };
 
   const resizeCanvas = () => {
@@ -1094,6 +1098,7 @@ const initHeroAnimation = () => {
     if (!heroCtx) return;
     const { clientWidth: width, clientHeight: height } = heroCanvas;
     heroCtx.clearRect(0, 0, width, height);
+    heroTick += 1;
     const gradient = heroCtx.createRadialGradient(
       width * 0.2 + heroPointer.x * 0.05,
       height * 0.3 + heroPointer.y * 0.05,
@@ -1113,19 +1118,46 @@ const initHeroAnimation = () => {
     heroCtx.ellipse(width * 0.6, height * 0.5, width * 0.35, height * 0.18, 0, 0, Math.PI * 2);
     heroCtx.stroke();
 
-    heroParticles.forEach((p) => {
+    heroCtx.save();
+    heroCtx.globalCompositeOperation = 'lighter';
+
+    heroParticles.forEach((p, index) => {
       p.x += Math.cos(p.angle) * p.speed + heroPointer.x * 0.0005;
       p.y += Math.sin(p.angle) * p.speed + heroPointer.y * 0.0005;
-      p.angle += 0.0025;
+      p.angle += 0.0025 + p.drift * 0.5;
       if (p.x > width) p.x = 0;
       if (p.x < 0) p.x = width;
       if (p.y > height) p.y = 0;
       if (p.y < 0) p.y = height;
-      heroCtx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+
+      const pulse = p.baseAlpha + 0.35 * Math.sin(heroTick * (0.012 + p.drift) + p.pulse);
+      const alpha = Math.max(0.08, Math.min(0.85, pulse));
+      const radius = p.r * (0.7 + 0.35 * Math.sin(heroTick * 0.01 + p.pulse));
+
+      heroCtx.fillStyle = `rgba(240, 248, 255, ${alpha})`;
       heroCtx.beginPath();
-      heroCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      heroCtx.arc(p.x, p.y, Math.max(radius, 0.4), 0, Math.PI * 2);
       heroCtx.fill();
+
+      for (let j = index + 1; j < heroParticles.length; j += 1) {
+        const q = heroParticles[j];
+        const dx = p.x - q.x;
+        const dy = p.y - q.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist > 160) continue;
+        const lineAlpha = Math.max(0, 1 - dist / 160) * 0.35;
+        if (lineAlpha <= 0) continue;
+        heroCtx.strokeStyle = `rgba(103, 232, 249, ${lineAlpha})`;
+        heroCtx.lineWidth = Math.max(0.3, 1 - dist / 220);
+        heroCtx.lineCap = 'round';
+        heroCtx.beginPath();
+        heroCtx.moveTo(p.x, p.y);
+        heroCtx.lineTo(q.x, q.y);
+        heroCtx.stroke();
+      }
     });
+
+    heroCtx.restore();
 
     heroAnimationId = requestAnimationFrame(draw);
   };
