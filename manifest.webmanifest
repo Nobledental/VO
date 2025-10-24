@@ -2,8 +2,10 @@
   "name": "HealthFlo Console",
   "short_name": "HealthFlo",
   "description": "Cashless care, denial recovery, and corporate health benefits wherever you are.",
+  "lang": "en-IN",
+  "dir": "ltr",
   "id": "./",
-  "start_url": "./",
+  "start_url": "./?utm_source=pwa",
   "scope": "./",
   "display": "standalone",
   "display_override": ["standalone", "window-controls-overlay"],
@@ -31,6 +33,20 @@
       "purpose": "any maskable"
     }
   ],
+  "screenshots": [
+    {
+      "src": "https://storage.googleapis.com/dev_resources_voka_io_303011/common/pwa-dashboard.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "label": "Dashboard view"
+    },
+    {
+      "src": "https://storage.googleapis.com/dev_resources_voka_io_303011/common/pwa-claims.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "label": "Claims tracking"
+    }
+  ],
   "shortcuts": [
     {
       "name": "Decode a policy",
@@ -45,5 +61,8 @@
       "url": "./#visibility"
     }
   ],
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
   "prefer_related_applications": false
 }
