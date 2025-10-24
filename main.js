@@ -37,6 +37,21 @@ let heroCtx = null;
 let heroParticles = [];
 let heroAnimationId = null;
 let heroPointer = { x: 0, y: 0 };
+let deferredInstallPrompt = null;
+const installPromptListeners = [];
+
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  installPromptListeners.forEach((listener) => {
+    try {
+      listener();
+    } catch (error) {
+      track('pwa_install_listener_error', { message: error?.message || String(error) });
+    }
+  });
+  track('pwa_install_available');
+});
 
 const personaConfig = {
   patient: {
@@ -1115,6 +1130,7 @@ const initStickyToggle = () => {
   const expandedLabel = toggle.dataset.expandedLabel || 'Hide conversation';
   const collapsedIcon = toggle.dataset.collapsedIcon || '+';
   const expandedIcon = toggle.dataset.expandedIcon || '–';
+  const closeButton = leadForm.querySelector('[data-lead-close]');
 
   const updateToggleVisuals = (expanded) => {
     if (toggleLabel) toggleLabel.textContent = expanded ? expandedLabel : collapsedLabel;
@@ -1132,6 +1148,7 @@ const initStickyToggle = () => {
     toggle.setAttribute('aria-expanded', String(expanded));
     stickyLead.classList.toggle('is-collapsed', !expanded);
     leadForm.setAttribute('aria-hidden', String(!expanded));
+    leadForm.toggleAttribute('inert', !expanded);
     if ('inert' in leadForm) {
       leadForm.inert = !expanded;
     } else {
@@ -1174,9 +1191,32 @@ const initStickyToggle = () => {
     link.addEventListener('click', () => openLead({ focusField: true }));
   });
 
+  const shouldIgnorePointer = (target) => {
+    if (typeof Element === 'undefined') return false;
+    if (!(target instanceof Element)) return false;
+    if (stickyLead.contains(target)) return true;
+    if (target.closest('a[href="#lead"]')) return true;
+    return false;
+  };
+
+  document.addEventListener('pointerdown', (event) => {
+    if (!isExpanded()) return;
+    if (shouldIgnorePointer(event.target)) return;
+    closeLead();
+  });
+
+  if (closeButton) {
+    closeButton.addEventListener('click', () => {
+      closeLead();
+      toggle.focus();
+    });
+  }
+
   window.addEventListener('hashchange', () => {
     if (window.location.hash === '#lead') {
       openLead();
+    } else if (isExpanded()) {
+      closeLead();
     }
   });
 
@@ -1187,6 +1227,71 @@ const initStickyToggle = () => {
       toggle.focus();
     }
   });
+};
+
+const initInstallPrompt = () => {
+  const installButtons = $$('[data-install-app]');
+  const installHint = $('[data-install-hint]');
+  if (!installButtons.length && !installHint) return;
+
+  const hideInstallUI = () => {
+    installButtons.forEach((button) => {
+      button.hidden = true;
+      button.setAttribute('aria-hidden', 'true');
+    });
+    if (installHint) {
+      installHint.hidden = true;
+      installHint.setAttribute('aria-hidden', 'true');
+    }
+  };
+
+  const showInstallUI = () => {
+    installButtons.forEach((button) => {
+      button.hidden = false;
+      button.removeAttribute('aria-hidden');
+    });
+    if (installHint) {
+      installHint.hidden = false;
+      installHint.removeAttribute('aria-hidden');
+    }
+  };
+
+  hideInstallUI();
+
+  installPromptListeners.push(showInstallUI);
+
+  if (deferredInstallPrompt) {
+    showInstallUI();
+  }
+
+  installButtons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      if (!deferredInstallPrompt) {
+        track('pwa_install_clicked', { available: false });
+        return;
+      }
+      track('pwa_install_prompted');
+      try {
+        deferredInstallPrompt.prompt();
+        const choice = await deferredInstallPrompt.userChoice;
+        track('pwa_install_response', { outcome: choice?.outcome || 'unknown' });
+      } catch (error) {
+        track('pwa_install_error', { message: error?.message || String(error) });
+      } finally {
+        deferredInstallPrompt = null;
+        hideInstallUI();
+      }
+    });
+  });
+
+  window.addEventListener('appinstalled', () => {
+    track('pwa_app_installed');
+    hideInstallUI();
+  });
+
+  if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) {
+    hideInstallUI();
+  }
 };
 
 const initServiceWorker = () => {
@@ -1218,10 +1323,11 @@ const init = () => {
   initTracking();
   initHeroAnimation();
   initStickyToggle();
+  initInstallPrompt();
   initServiceWorker();
   initPersonaFromSource();
   initWhatsAppOptin();
-  observeReveal($$('.metric-panel, .guarantees'));
+  observeReveal($$('.metric-panel, .guarantees, .visibility-card'));
 };
 
 document.addEventListener('DOMContentLoaded', init);
