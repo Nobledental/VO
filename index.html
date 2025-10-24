@@ -24,11 +24,9 @@
     />
     <meta name="twitter:image" content="icons/icon-512.png" />
     <link rel="canonical" href="https://healthflo.io/" />
-    <meta name="application-name" content="HealthFlo" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="HealthFlo" />
-    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#1e3fa1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -275,58 +273,6 @@
         </div>
       </section>
 
-      <section class="roi" id="roi">
-        <div class="container">
-          <div class="section-heading">
-            <h2 data-roi-title>Quantify the HealthFlo advantage</h2>
-            <p data-roi-subtitle>Adjust the slider to see how operations and revenue scale with HealthFlo.</p>
-          </div>
-          <div class="roi-simulator">
-            <div class="roi-slider">
-              <div class="roi-slider-header">
-                <span class="roi-slider-label" id="roiSliderLabel" data-roi-slider-label>Monthly cashless cases</span>
-                <output
-                  id="roiSliderValue"
-                  class="roi-slider-value"
-                  data-roi-slider-value
-                  for="roiSlider"
-                >50 cases/mo</output>
-              </div>
-              <input
-                type="range"
-                id="roiSlider"
-                name="roiSlider"
-                min="10"
-                max="200"
-                step="10"
-                value="50"
-                data-roi-slider
-                aria-labelledby="roiSliderLabel"
-                aria-describedby="roiSliderValue"
-              />
-            </div>
-            <div class="roi-metrics" data-roi-metrics aria-live="polite" aria-atomic="true">
-              <article class="roi-metric">
-                <span class="roi-value" data-roi-metric-value="0">—</span>
-                <span class="roi-label">Impact metric</span>
-              </article>
-              <article class="roi-metric">
-                <span class="roi-value" data-roi-metric-value="1">—</span>
-                <span class="roi-label">Impact metric</span>
-              </article>
-              <article class="roi-metric">
-                <span class="roi-value" data-roi-metric-value="2">—</span>
-                <span class="roi-label">Impact metric</span>
-              </article>
-            </div>
-            <p class="roi-note" data-roi-note>Benchmarks update with the persona you pick above.</p>
-            <noscript>
-              <p class="roi-noscript">Enable JavaScript to explore ROI benchmarks for each persona.</p>
-            </noscript>
-          </div>
-        </div>
-      </section>
-
       <section class="objections" id="faq">
         <div class="container">
           <div class="section-heading">
@@ -375,24 +321,6 @@
         </div>
       </section>
     </main>
-
-    <div class="update-toast" data-update-toast hidden role="status" aria-live="polite" aria-hidden="true">
-      <div class="update-toast__content">
-        <strong>Fresh updates are ready.</strong>
-        <p>Reload to get the latest HealthFlo experience.</p>
-      </div>
-      <div class="update-toast__actions">
-        <button class="btn btn-secondary btn-sm" type="button" data-update-reload>Refresh</button>
-        <button
-          class="btn-link update-toast__dismiss"
-          type="button"
-          data-update-dismiss
-          aria-label="Dismiss update notification"
-        >
-          Dismiss
-        </button>
-      </div>
-    </div>
 
     <aside class="sticky-lead is-collapsed" id="lead">
       <button
