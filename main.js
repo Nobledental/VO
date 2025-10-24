@@ -7,6 +7,73 @@ const track = (event, props = {}) => {
   dataLayer.push({ event, ...props, timestamp: Date.now() });
 };
 
+// Idle scheduling (for non-critical work)
+const idle = (fn) =>
+  'requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 1200 }) : setTimeout(fn, 0);
+
+// Body scroll lock for overlays (prevents layout jump)
+let __scrollLockY = 0;
+const freezeScroll = () => {
+  if (body.dataset.scrollLocked === '1') return;
+  __scrollLockY = window.pageYOffset;
+  body.style.position = 'fixed';
+  body.style.top = `-${__scrollLockY}px`;
+  body.style.left = '0';
+  body.style.right = '0';
+  body.style.width = '100%';
+  body.dataset.scrollLocked = '1';
+};
+const unfreezeScroll = () => {
+  if (body.dataset.scrollLocked !== '1') return;
+  body.style.position = '';
+  body.style.top = '';
+  body.style.left = '';
+  body.style.right = '';
+  body.style.width = '';
+  body.dataset.scrollLocked = '0';
+  window.scrollTo(0, __scrollLockY);
+};
+
+// Focus trap for modal/nav
+let activeTrap = null;
+let restoreEl = null;
+const getFocusables = (root) =>
+  Array.from(root.querySelectorAll(
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  )).filter((el) => el.offsetParent !== null || el === document.activeElement);
+
+const activateTrap = (root, returnTo) => {
+  restoreEl = returnTo || document.activeElement;
+  activeTrap = root;
+  const f = getFocusables(activeTrap);
+  (f[0] || activeTrap).focus({ preventScroll: true });
+  document.addEventListener('keydown', trapHandler, true);
+};
+const deactivateTrap = () => {
+  document.removeEventListener('keydown', trapHandler, true);
+  const to = restoreEl;
+  activeTrap = null;
+  restoreEl = null;
+  if (to && typeof to.focus === 'function') to.focus({ preventScroll: true });
+};
+function trapHandler(e) {
+  if (!activeTrap || e.key !== 'Tab') return;
+  const f = getFocusables(activeTrap);
+  if (!f.length) {
+    e.preventDefault();
+    return;
+  }
+  const first = f[0],
+    last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
+}
+
 const createStorage = () => {
   try {
     if (!('localStorage' in window)) throw new Error('localStorage unavailable');
@@ -97,7 +164,7 @@ const personaConfig = {
           copy: 'Transparent bundles by city & specialty; add-ons like private room or ICU buffer before admission.',
           tag: 'City packages',
           cta: 'Browse packages →',
-          href: '#packages',
+          href: '#section-patient',
           image: 'https://storage.googleapis.com/dev_resources_voka_io_303011/common/cat-5.webp'
         },
         {
@@ -505,6 +572,27 @@ const personaConfig = {
 
 const themeButtons = $$('.theme-chip');
 const personaButtons = $$('.persona-chip');
+const personaGroup = $('.persona-selector');
+const initPersonaRadios = () => {
+  if (!personaGroup) return;
+  personaGroup.setAttribute('role', 'radiogroup');
+  personaButtons.forEach((btn) => {
+    btn.setAttribute('role', 'radio');
+    btn.addEventListener('keydown', (e) => {
+      const idx = personaButtons.indexOf(btn);
+      if (!['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp', 'Home', 'End'].includes(e.key)) return;
+      e.preventDefault();
+      let next = idx;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (idx + 1) % personaButtons.length;
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (idx - 1 + personaButtons.length) % personaButtons.length;
+      if (e.key === 'Home') next = 0;
+      if (e.key === 'End') next = personaButtons.length - 1;
+      applyPersona(personaButtons[next].dataset.persona, true);
+      personaButtons[next].focus();
+    });
+  });
+};
+
 const heroIntroEl = $('[data-hero-intro]');
 const heroCTA = $('[data-hero-cta]');
 const heroProofLinks = $$('[data-whatsapp-link]');
@@ -528,7 +616,7 @@ const stickyLead = $('.sticky-lead');
 const aiSubtitle = $('[data-ai-subtitle]');
 const aiPrompts = $('[data-ai-prompts]');
 const aiModal = $('[data-ai-modal]');
-const aiOpeners = $$('[data-ai-launch] button, [data-ai-launch]');
+const aiOpeners = $$('[data-ai-launch] button, [data-ai-launch][role="button"], [data-ai-launch][tabindex]');
 const aiCloseEls = $$('[data-ai-close]');
 const siteHeader = $('.site-header');
 const nav = $('.primary-nav');
@@ -760,17 +848,23 @@ const applyPersona = (persona, trackEvent = false) => {
   if (!config) return;
   currentPersona = persona;
   body.dataset.persona = persona;
+
+  // radio semantics + roving tabindex
   personaButtons.forEach((btn) => {
-    const isActive = btn.dataset.persona === persona;
-    btn.classList.toggle('is-active', isActive);
-    btn.setAttribute('aria-pressed', String(isActive));
+    const active = btn.dataset.persona === persona;
+    btn.classList.toggle('is-active', active);
+    btn.setAttribute('aria-checked', String(active));
+    btn.removeAttribute('aria-pressed');
+    btn.tabIndex = active ? 0 : -1;
   });
+
   if (heroIntroEl) heroIntroEl.textContent = config.heroIntro;
   if (heroCTA) {
     heroCTA.textContent = config.heroCTA.label;
     heroCTA.href = config.heroCTA.href;
     heroCTA.setAttribute('data-track-label', `hero_primary_${persona}`);
   }
+
   renderWhy(config);
   renderQuote(config);
   renderProducts(config);
@@ -782,7 +876,7 @@ const applyPersona = (persona, trackEvent = false) => {
   renderAI(config);
   updateWhatsAppLinks(config);
   storage.setItem('healthflo_persona', persona);
-  localStorage.setItem('healthflo_persona', persona);
+
   if (trackEvent) track('persona_selected', { role: persona });
   togglePersonaSections(persona);
 };
@@ -855,16 +949,11 @@ const initHeader = () => {
 
 const initNav = () => {
   if (!nav || !navToggle) return;
-
   const mobileQuery = window.matchMedia('(max-width: 960px)');
 
   const setAriaHidden = () => {
-    if (mobileQuery.matches) {
-      const hidden = !nav.classList.contains('is-open');
-      nav.setAttribute('aria-hidden', String(hidden));
-    } else {
-      nav.removeAttribute('aria-hidden');
-    }
+    if (mobileQuery.matches) nav.setAttribute('aria-hidden', String(!nav.classList.contains('is-open')));
+    else nav.removeAttribute('aria-hidden');
   };
 
   const closeNav = (focusToggle = false) => {
@@ -873,9 +962,9 @@ const initNav = () => {
     navToggle.setAttribute('aria-expanded', 'false');
     body.classList.remove('nav-open');
     setAriaHidden();
-    if (focusToggle) {
-      navToggle.focus();
-    }
+    deactivateTrap();
+    unfreezeScroll();
+    if (focusToggle) navToggle.focus({ preventScroll: true });
   };
 
   const openNav = () => {
@@ -884,55 +973,39 @@ const initNav = () => {
     navToggle.setAttribute('aria-expanded', 'true');
     body.classList.add('nav-open');
     setAriaHidden();
+    freezeScroll();
+    activateTrap(nav, navToggle);
     const firstLink = nav.querySelector('a');
-    if (firstLink) {
-      firstLink.focus({ preventScroll: true });
-    }
+    if (firstLink) firstLink.focus({ preventScroll: true });
   };
 
   const toggleNav = () => {
     if (!mobileQuery.matches) return;
-    if (nav.classList.contains('is-open')) {
-      closeNav();
-    } else {
-      openNav();
-    }
+    nav.classList.contains('is-open') ? closeNav() : openNav();
   };
 
   const handleKeydown = (event) => {
-    if (event.key === 'Escape' && nav.classList.contains('is-open')) {
-      closeNav(true);
-    }
+    if (event.key === 'Escape' && nav.classList.contains('is-open')) closeNav(true);
   };
 
   const handleDocumentClick = (event) => {
     if (!nav.classList.contains('is-open')) return;
-    if (event.target.closest('.primary-nav')) return;
-    if (event.target.closest('.nav-toggle')) return;
+    if (event.target.closest('.primary-nav') || event.target.closest('.nav-toggle')) return;
     closeNav();
   };
 
   const handleViewportChange = (event) => {
-    if (!event.matches) {
-      closeNav();
-    } else {
-      setAriaHidden();
-    }
+    if (!event.matches) closeNav();
+    else setAriaHidden();
   };
 
   navToggle.addEventListener('click', toggleNav);
   document.addEventListener('keydown', handleKeydown);
   document.addEventListener('click', handleDocumentClick);
+  $$('.primary-nav a').forEach((link) => link.addEventListener('click', () => closeNav()));
 
-  $$('.primary-nav a').forEach((link) =>
-    link.addEventListener('click', () => closeNav())
-  );
-
-  if (typeof mobileQuery.addEventListener === 'function') {
-    mobileQuery.addEventListener('change', handleViewportChange);
-  } else if (typeof mobileQuery.addListener === 'function') {
-    mobileQuery.addListener(handleViewportChange);
-  }
+  if (typeof mobileQuery.addEventListener === 'function') mobileQuery.addEventListener('change', handleViewportChange);
+  else if (typeof mobileQuery.addListener === 'function') mobileQuery.addListener(handleViewportChange);
 
   setAriaHidden();
 };
@@ -967,6 +1040,7 @@ const initPersonaSelector = () => {
   personaButtons.forEach((btn) =>
     btn.addEventListener('click', () => applyPersona(btn.dataset.persona, true))
   );
+  initPersonaRadios();
 };
 
 const initLeadForm = () => {
@@ -1014,11 +1088,12 @@ const initAI = () => {
     btn.addEventListener('click', () => {
       aiModal.classList.add('is-open');
       aiModal.setAttribute('aria-hidden', 'false');
+      freezeScroll();
+      activateTrap(aiModal, btn);
+      track('ai_modal_opened', { role: currentPersona });
     })
   );
-  aiCloseEls.forEach((el) =>
-    el.addEventListener('click', closeAIModal)
-  );
+  aiCloseEls.forEach((el) => el.addEventListener('click', closeAIModal));
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeAIModal();
   });
@@ -1032,9 +1107,12 @@ const initAI = () => {
 };
 
 const closeAIModal = () => {
-  if (!aiModal) return;
+  if (!aiModal || !aiModal.classList.contains('is-open')) return;
   aiModal.classList.remove('is-open');
   aiModal.setAttribute('aria-hidden', 'true');
+  deactivateTrap();
+  unfreezeScroll();
+  track('ai_modal_closed', { role: currentPersona });
 };
 
 const initTracking = () => {
@@ -1443,13 +1521,18 @@ const init = () => {
   initLeadForm();
   initAI();
   initTracking();
-  initHeroAnimation();
   initStickyToggle();
-  initInstallPrompt();
-  initServiceWorker();
   initPersonaFromSource();
   initWhatsAppOptin();
   observeReveal($$('.metric-panel, .guarantees, .visibility-card'));
+
+  // Defer non-critical work
+  idle(() => {
+    initHeroAnimation();
+    initInstallPrompt();
+    initServiceWorker();
+  });
 };
 
 document.addEventListener('DOMContentLoaded', init);
+styles.css
