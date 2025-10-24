@@ -197,6 +197,38 @@ const personaConfig = {
       ],
       cta: 'Start for free'
     },
+    roi: {
+      title: 'Model concierge impact for your family',
+      subtitle: 'Estimate how much faster approvals land with HealthFlo on your side.',
+      slider: {
+        label: 'Active cashless cases per month',
+        min: 1,
+        max: 6,
+        step: 1,
+        defaultValue: 2,
+        formatValue: (value) => `${value} case${value === 1 ? '' : 's'}/month`
+      },
+      metrics: [
+        {
+          label: 'Same-day approvals unlocked',
+          compute: (value) => Math.max(1, Math.round(value * 0.92)),
+          suffix: 'cases/month',
+          highlight: true
+        },
+        {
+          label: 'Hours saved on paperwork',
+          compute: (value) => Math.round(value * 6),
+          suffix: 'hours/month'
+        },
+        {
+          label: 'Shortfall avoided',
+          compute: (value) => value * 9000,
+          type: 'currency',
+          suffix: '/month'
+        }
+      ],
+      note: 'Based on Tier-1 patient concierge cohorts, 2024.'
+    },
     lead: {
       title: 'Decode your policy with a specialist',
       fields: [
@@ -344,6 +376,38 @@ const personaConfig = {
       ],
       cta: 'Book an RCM pilot'
     },
+    roi: {
+      title: 'Quantify your RCM cockpit upside',
+      subtitle: 'Project operational wins and recovery impact as volumes scale.',
+      slider: {
+        label: 'Monthly cashless cases',
+        min: 40,
+        max: 320,
+        step: 20,
+        defaultValue: 120,
+        formatValue: (value) => `${value} cases/month`
+      },
+      metrics: [
+        {
+          label: 'Same-day approvals unlocked',
+          compute: (value) => Math.round(value * 0.42),
+          suffix: 'cases/month',
+          highlight: true
+        },
+        {
+          label: 'Ops hours returned to staff',
+          compute: (value) => Math.round(value * 1.8),
+          suffix: 'hours/month'
+        },
+        {
+          label: 'Denial recovery potential',
+          compute: (value) => value * 4200,
+          type: 'currency',
+          suffix: '/month'
+        }
+      ],
+      note: 'Benchmarked with 250–400 bed partner hospitals, FY23-24.'
+    },
     lead: {
       title: 'Launch compliant cashless & RCM',
       fields: [
@@ -438,6 +502,38 @@ const personaConfig = {
       ],
       cta: 'Schedule pilot review'
     },
+    roi: {
+      title: 'Forecast pilot impact',
+      subtitle: 'Estimate alerts and loss-ratio protection for your pre-auth volume.',
+      slider: {
+        label: 'Monthly pre-auth volume',
+        min: 150,
+        max: 900,
+        step: 50,
+        defaultValue: 300,
+        formatValue: (value) => `${value} pre-auths/month`
+      },
+      metrics: [
+        {
+          label: 'SLA breach alerts generated',
+          compute: (value) => Math.round(value * 0.28),
+          suffix: 'alerts/month',
+          highlight: true
+        },
+        {
+          label: 'Manual follow-up hours saved',
+          compute: (value) => Math.round(value * 0.6),
+          suffix: 'hours/month'
+        },
+        {
+          label: 'Loss ratio safeguarded',
+          compute: (value) => value * 0.012 * 45000,
+          type: 'currency',
+          suffix: '/month'
+        }
+      ],
+      note: 'Pilot data across three national insurers, 2024.'
+    },
     lead: {
       title: 'Co-design your insurer pilot',
       fields: [
@@ -531,6 +627,37 @@ const personaConfig = {
       ],
       cta: 'Plan a benefits sprint'
     },
+    roi: {
+      title: 'Plan adoption & concierge gains',
+      subtitle: 'Model how HealthFlo scales with your employee base.',
+      slider: {
+        label: 'Employees covered',
+        min: 200,
+        max: 5000,
+        step: 100,
+        defaultValue: 1200,
+        formatValue: (value) => `${Number(value).toLocaleString('en-IN')} employees`
+      },
+      metrics: [
+        {
+          label: 'Employees activated day one',
+          compute: (value) => Math.round(value * 0.78),
+          suffix: 'people',
+          highlight: true
+        },
+        {
+          label: 'HR hours saved monthly',
+          compute: (value) => Math.round(value * 0.12),
+          suffix: 'hours/month'
+        },
+        {
+          label: 'Cashless cases supported yearly',
+          compute: (value) => Math.round(value * 0.18),
+          suffix: 'cases/year'
+        }
+      ],
+      note: 'Aggregated from five enterprise rollouts, 2024.'
+    },
     lead: {
       title: 'Design the plan your team will use',
       fields: [
@@ -609,6 +736,15 @@ const riskLine = $('[data-risk-line]');
 const pricingLede = $('[data-pricing-lede]');
 const pricingPoints = $('[data-pricing-points]');
 const pricingCTA = $('[data-pricing-cta]');
+const roiSection = $('.roi');
+const roiSimulator = $('.roi-simulator');
+const roiTitleEl = $('[data-roi-title]');
+const roiSubtitleEl = $('[data-roi-subtitle]');
+const roiSliderLabel = $('[data-roi-slider-label]');
+const roiSlider = $('[data-roi-slider]');
+const roiSliderValue = $('[data-roi-slider-value]');
+const roiMetrics = $('[data-roi-metrics]');
+const roiNote = $('[data-roi-note]');
 const leadTitle = $('[data-lead-title]');
 const leadFields = $('[data-lead-fields]');
 const leadForm = $('[data-lead-form]');
@@ -621,6 +757,11 @@ const aiCloseEls = $$('[data-ai-close]');
 const siteHeader = $('.site-header');
 const nav = $('.primary-nav');
 const navToggle = $('.nav-toggle');
+const updateToast = $('[data-update-toast]');
+const updateReloadButton = $('[data-update-reload]');
+const updateDismissButton = $('[data-update-dismiss]');
+let updateToastHideTimer = null;
+let serviceWorkerRefreshing = false;
 
 const updateLeadFormFocusables = (expanded) => {
   if (!leadForm) return;
@@ -648,6 +789,68 @@ const updateLeadFormFocusables = (expanded) => {
 };
 
 let currentPersona = 'patient';
+let activeROIConfig = null;
+let roiMetricValueEls = [];
+let waitingServiceWorker = null;
+let updateToastEventsBound = false;
+
+const showUpdateToast = () => {
+  if (!updateToast) return;
+  if (updateToastHideTimer) {
+    window.clearTimeout(updateToastHideTimer);
+    updateToastHideTimer = null;
+  }
+  updateToast.hidden = false;
+  updateToast.setAttribute('aria-hidden', 'false');
+  requestAnimationFrame(() => {
+    updateToast.classList.add('is-visible');
+    if (updateReloadButton) {
+      updateReloadButton.focus({ preventScroll: true });
+    }
+  });
+};
+
+const hideUpdateToast = (immediate = false) => {
+  if (!updateToast) return;
+  if (updateToastHideTimer) {
+    window.clearTimeout(updateToastHideTimer);
+    updateToastHideTimer = null;
+  }
+  const finalize = () => {
+    updateToast.hidden = true;
+  };
+  updateToast.classList.remove('is-visible');
+  updateToast.setAttribute('aria-hidden', 'true');
+  if (immediate) {
+    finalize();
+  } else {
+    updateToastHideTimer = window.setTimeout(() => {
+      finalize();
+      updateToastHideTimer = null;
+    }, 220);
+  }
+};
+
+const bindUpdateToastEvents = () => {
+  if (updateToastEventsBound) return;
+  if (updateReloadButton) {
+    updateReloadButton.addEventListener('click', () => {
+      track('service_worker_update_refresh_clicked', { waiting: Boolean(waitingServiceWorker) });
+      if (waitingServiceWorker) {
+        waitingServiceWorker.postMessage('SKIP_WAITING');
+      } else {
+        window.location.reload();
+      }
+    });
+  }
+  if (updateDismissButton) {
+    updateDismissButton.addEventListener('click', () => {
+      hideUpdateToast();
+      track('service_worker_update_dismissed');
+    });
+  }
+  updateToastEventsBound = true;
+};
 
 const renderWhy = (config) => {
   if (!whyGrid) return;
@@ -695,6 +898,14 @@ const renderProducts = (config) => {
 
 const formatINR = (value) =>
   `₹${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+
+const formatNumber = (value, decimals = 0) => {
+  if (!Number.isFinite(value)) return '–';
+  return Number(value).toLocaleString('en-IN', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  });
+};
 
 const renderPackages = (config) => {
   if (!packagesSection) return;
@@ -781,6 +992,93 @@ const renderPricing = (config) => {
   observeReveal([$('.pricing-copy'), $('.pricing-card')].filter(Boolean));
 };
 
+const updateROIMetrics = (value) => {
+  if (!activeROIConfig || !roiSlider || !roiSliderValue) return;
+  const sliderConfig = activeROIConfig.slider || {};
+  const numericValue = Number(value);
+  const formattedValue =
+    typeof sliderConfig.formatValue === 'function'
+      ? sliderConfig.formatValue(numericValue)
+      : `${formatNumber(numericValue)}${sliderConfig.valueSuffix ? ` ${sliderConfig.valueSuffix}` : ''}`.trim();
+
+  roiSliderValue.textContent = formattedValue;
+  roiSlider.setAttribute('aria-valuenow', String(numericValue));
+  roiSlider.setAttribute('aria-valuetext', formattedValue);
+
+  if (!Array.isArray(activeROIConfig.metrics)) return;
+  activeROIConfig.metrics.forEach((metric, index) => {
+    const target = roiMetricValueEls[index];
+    if (!target) return;
+    const computed = typeof metric.compute === 'function' ? metric.compute(numericValue) : numericValue;
+    let output = '';
+    if (metric.type === 'currency') {
+      const rounded = Math.max(0, Math.round(computed));
+      const valueString = formatINR(rounded);
+      output = metric.suffix ? `${valueString} ${metric.suffix}` : valueString;
+    } else if (metric.type === 'percentage') {
+      const decimals = metric.decimals ?? 1;
+      output = `${formatNumber(computed, decimals)}%`;
+    } else {
+      const decimals = metric.decimals ?? 0;
+      const base = formatNumber(computed, decimals);
+      output = metric.suffix ? `${base} ${metric.suffix}` : base;
+    }
+    target.textContent = output;
+  });
+};
+
+const renderROI = (config) => {
+  if (!roiSection || !roiSlider || !roiMetrics) return;
+  const roi = config.roi;
+  if (!roi) {
+    roiSection.hidden = true;
+    roiSection.setAttribute('aria-hidden', 'true');
+    roiMetrics.innerHTML = '';
+    activeROIConfig = null;
+    roiMetricValueEls = [];
+    return;
+  }
+
+  roiSection.hidden = false;
+  roiSection.setAttribute('aria-hidden', 'false');
+  activeROIConfig = roi;
+
+  if (roiTitleEl) roiTitleEl.textContent = roi.title;
+  if (roiSubtitleEl) roiSubtitleEl.textContent = roi.subtitle;
+  if (roiNote) roiNote.textContent = roi.note;
+  if (roiSliderLabel) roiSliderLabel.textContent = roi.slider.label;
+
+  const { min, max, step, defaultValue } = roi.slider;
+  const initialValue = defaultValue ?? min ?? 0;
+  roiSlider.min = String(min);
+  roiSlider.max = String(max);
+  roiSlider.step = String(step ?? 1);
+  roiSlider.value = initialValue;
+  roiSlider.setAttribute('aria-valuemin', String(min));
+  roiSlider.setAttribute('aria-valuemax', String(max));
+  roiSlider.setAttribute('aria-label', roi.slider.label);
+  if (roiSliderValue?.id) {
+    roiSlider.setAttribute('aria-describedby', roiSliderValue.id);
+  }
+
+  roiMetrics.innerHTML = roi.metrics
+    .map(
+      (metric, index) => `
+        <article class="roi-metric will-reveal${metric.highlight ? ' is-highlight' : ''}">
+          <span class="roi-value" data-roi-metric-value="${index}"></span>
+          <span class="roi-label">${metric.label}</span>
+        </article>
+      `
+    )
+    .join('');
+  roiMetricValueEls = $$('[data-roi-metric-value]', roiMetrics);
+  observeReveal($$('.roi-metric', roiMetrics));
+
+  if (roiSimulator) observeReveal([roiSimulator]);
+
+  updateROIMetrics(initialValue);
+};
+
 const renderLeadForm = (config) => {
   if (!leadFields) return;
   leadTitle.textContent = config.lead.title;
@@ -835,6 +1133,16 @@ const renderAI = (config) => {
       .join('');
 };
 
+const initROI = () => {
+  if (!roiSlider) return;
+  roiSlider.addEventListener('input', (event) => {
+    updateROIMetrics(Number(event.target.value));
+  });
+  roiSlider.addEventListener('change', (event) => {
+    track('roi_slider_adjusted', { role: currentPersona, value: Number(event.target.value) });
+  });
+};
+
 const updateWhatsAppLinks = (config) => {
   const encoded = encodeURIComponent(config.whatsappCTA);
   heroProofLinks.forEach((link) => {
@@ -872,6 +1180,7 @@ const applyPersona = (persona, trackEvent = false) => {
   renderHow(config);
   if (riskLine) riskLine.textContent = config.riskLine;
   renderPricing(config);
+  renderROI(config);
   renderLeadForm(config);
   renderAI(config);
   updateWhatsAppLinks(config);
@@ -880,7 +1189,7 @@ const applyPersona = (persona, trackEvent = false) => {
   if (trackEvent) track('persona_selected', { role: persona });
   togglePersonaSections(persona);
 };
-
+const initServiceWorker = () => {
 const togglePersonaSections = (persona) => {
   $$('[data-persona-section]').forEach((section) => {
     const roles = section.dataset.personaSection.split(/[,\s]+/).filter(Boolean);
@@ -1496,16 +1805,57 @@ const initInstallPrompt = () => {
 
 const initServiceWorker = () => {
   if (!('serviceWorker' in navigator)) return;
+  const monitorUpdates = (registration) => {
+    const notifyWaiting = () => {
+      const worker = registration.waiting;
+      if (!worker || !navigator.serviceWorker.controller) return;
+      waitingServiceWorker = worker;
+      bindUpdateToastEvents();
+      showUpdateToast();
+      track('service_worker_update_available');
+      worker.addEventListener('statechange', () => {
+        if (worker.state === 'redundant' || worker.state === 'activated') {
+          waitingServiceWorker = null;
+          hideUpdateToast(true);
+        }
+      });
+    };
+
+    if (registration.waiting) {
+      notifyWaiting();
+    }
+
+    registration.addEventListener('updatefound', () => {
+      const installing = registration.installing;
+      if (!installing) return;
+      installing.addEventListener('statechange', () => {
+        if (installing.state === 'installed' && navigator.serviceWorker.controller) {
+          notifyWaiting();
+        }
+      });
+    });
+  };
+
   const register = () => {
     navigator.serviceWorker
       .register('sw.js')
-      .then((registration) =>
-        track('service_worker_registered', { scope: registration.scope || 'default' })
-      )
+      .then((registration) => {
+        track('service_worker_registered', { scope: registration.scope || 'default' });
+        monitorUpdates(registration);
+        return registration;
+      })
       .catch((error) =>
         track('service_worker_registration_failed', { message: error?.message || String(error) })
       );
   };
+
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (serviceWorkerRefreshing) return;
+    serviceWorkerRefreshing = true;
+    track('service_worker_controller_change');
+    window.location.reload();
+  });
+
   if (document.readyState === 'complete') {
     register();
   } else {
@@ -1519,6 +1869,7 @@ const init = () => {
   initTheme();
   initPersonaSelector();
   initLeadForm();
+  initROI();
   initAI();
   initTracking();
   initStickyToggle();
