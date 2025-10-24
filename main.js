@@ -854,14 +854,86 @@ const initHeader = () => {
 
 const initNav = () => {
   if (!nav || !navToggle) return;
-  const toggleNav = () => {
-    const isOpen = nav.classList.toggle('is-open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
+
+  const mobileQuery = window.matchMedia('(max-width: 960px)');
+
+  const setAriaHidden = () => {
+    if (mobileQuery.matches) {
+      const hidden = !nav.classList.contains('is-open');
+      nav.setAttribute('aria-hidden', String(hidden));
+    } else {
+      nav.removeAttribute('aria-hidden');
+    }
   };
+
+  const closeNav = (focusToggle = false) => {
+    nav.classList.remove('is-open');
+    navToggle.classList.remove('is-active');
+    navToggle.setAttribute('aria-expanded', 'false');
+    body.classList.remove('nav-open');
+    setAriaHidden();
+    if (focusToggle) {
+      navToggle.focus();
+    }
+  };
+
+  const openNav = () => {
+    nav.classList.add('is-open');
+    navToggle.classList.add('is-active');
+    navToggle.setAttribute('aria-expanded', 'true');
+    body.classList.add('nav-open');
+    setAriaHidden();
+    const firstLink = nav.querySelector('a');
+    if (firstLink) {
+      firstLink.focus({ preventScroll: true });
+    }
+  };
+
+  const toggleNav = () => {
+    if (!mobileQuery.matches) return;
+    if (nav.classList.contains('is-open')) {
+      closeNav();
+    } else {
+      openNav();
+    }
+  };
+
+  const handleKeydown = (event) => {
+    if (event.key === 'Escape' && nav.classList.contains('is-open')) {
+      closeNav(true);
+    }
+  };
+
+  const handleDocumentClick = (event) => {
+    if (!nav.classList.contains('is-open')) return;
+    if (event.target.closest('.primary-nav')) return;
+    if (event.target.closest('.nav-toggle')) return;
+    closeNav();
+  };
+
+  const handleViewportChange = (event) => {
+    if (!event.matches) {
+      closeNav();
+    } else {
+      setAriaHidden();
+    }
+  };
+
   navToggle.addEventListener('click', toggleNav);
+  document.addEventListener('keydown', handleKeydown);
+  document.addEventListener('click', handleDocumentClick);
+
   $$('.primary-nav a').forEach((link) =>
-    link.addEventListener('click', () => nav.classList.remove('is-open'))
+    link.addEventListener('click', () => closeNav())
   );
+
+  if (typeof mobileQuery.addEventListener === 'function') {
+    mobileQuery.addEventListener('change', handleViewportChange);
+  } else if (typeof mobileQuery.addListener === 'function') {
+    mobileQuery.addListener(handleViewportChange);
+  }
+
+  setAriaHidden();
 };
 
 const initTheme = () => {
