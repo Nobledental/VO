@@ -8,6 +8,25 @@
       name="description"
       content="Transparent packages, faster cashless, denial recovery, and corporate health benefits—trusted by 570+ NABH partners."
     />
+    <meta property="og:title" content="HealthFlo — Cashless Care &amp; RCM for Teams on the Move" />
+    <meta
+      property="og:description"
+      content="Install HealthFlo as a web app to decode policies, run cashless, and track denials with one tap wherever you work."
+    />
+    <meta property="og:image" content="icons/icon-512.png" />
+    <meta property="og:url" content="https://healthflo.io/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="HealthFlo — Cashless Care &amp; RCM for Teams on the Move" />
+    <meta
+      name="twitter:description"
+      content="Install the HealthFlo console to keep approvals, packages, and denials visible in one tap."
+    />
+    <meta name="twitter:image" content="icons/icon-512.png" />
+    <link rel="canonical" href="https://healthflo.io/" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="HealthFlo" />
     <meta name="theme-color" content="#1e3fa1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -106,7 +125,9 @@
                   data-track="whatsapp"
                   data-track-label="hero_whatsapp"
                 >Prefer WhatsApp? Get a 2-min summary</a>
+                <button class="btn btn-secondary" type="button" data-install-app hidden>Install HealthFlo</button>
               </div>
+              <p class="hero-install-hint" data-install-hint hidden>Install the HealthFlo app to keep approvals and denials visible even offline.</p>
               <p class="microcopy">No spam. Control when and how we reach out. WhatsApp summaries only.</p>
             </div>
           </div>
@@ -132,6 +153,40 @@
           </div>
           <div class="pillars" data-why-grid></div>
           <a class="cta-link" href="#how" data-track="cta" data-track-label="why_how">See how it works →</a>
+        </div>
+      </section>
+
+      <section class="visibility" id="visibility">
+        <div class="container visibility-inner">
+          <div class="visibility-copy">
+            <h2>Visibility that travels with your team</h2>
+            <p>
+              HealthFlo now ships as an installable app. Keep cashless statuses, approvals, and denial recoveries aligned even when
+              finance or care teams are away from their desks.
+            </p>
+            <ul class="visibility-highlights">
+              <li><strong>Realtime trackers:</strong> Monitor pre-auth prep and approvals with live status chips.</li>
+              <li><strong>Unified updates:</strong> Packages, docs, and escalations sync across mobile and desktop instantly.</li>
+              <li><strong>Offline ready:</strong> Recent checklists and SOPs stay accessible when connectivity is patchy.</li>
+            </ul>
+          </div>
+          <div class="visibility-grid">
+            <article class="visibility-card will-reveal">
+              <h3>Patient concierge</h3>
+              <p>Surface room rent caps, package inclusions, and required docs in a single tap for front-office teams.</p>
+              <span>One tap clarity</span>
+            </article>
+            <article class="visibility-card will-reveal">
+              <h3>Hospital command</h3>
+              <p>Track admission pipelines, document readiness, and TPA responses with smart nudges when action is due.</p>
+              <span>Always-on status</span>
+            </article>
+            <article class="visibility-card will-reveal">
+              <h3>Insurer cockpit</h3>
+              <p>View escalations, denials, and reconciliations with audit trails that satisfy compliance reviews fast.</p>
+              <span>Audit confident</span>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -273,11 +328,11 @@
       </section>
     </main>
 
-    <aside class="sticky-lead" id="lead">
+    <aside class="sticky-lead is-collapsed" id="lead">
       <button
         class="sticky-toggle"
         type="button"
-        aria-expanded="true"
+        aria-expanded="false"
         aria-controls="leadForm"
         data-collapsed-label="Start a conversation"
         data-expanded-label="Hide conversation"
@@ -290,8 +345,11 @@
         </span>
         <span class="toggle-icon" data-toggle-icon aria-hidden="true">+</span>
       </button>
-      <form class="lead-form" id="leadForm" data-lead-form>
-        <h3 data-lead-title>Know your policy coverages with a doctor</h3>
+      <form class="lead-form" id="leadForm" data-lead-form aria-hidden="true" inert>
+        <header class="lead-form-header">
+          <h3 data-lead-title>Know your policy coverages with a doctor</h3>
+          <button type="button" class="lead-close" data-lead-close aria-label="Close conversation">✕</button>
+        </header>
         <div class="lead-fields" data-lead-fields></div>
         <label class="checkbox">
           <input type="checkbox" name="whatsapp_optin" value="yes" />
