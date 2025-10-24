@@ -274,9 +274,24 @@
     </main>
 
     <aside class="sticky-lead" id="lead">
-      <button class="sticky-toggle" type="button" aria-expanded="true">Start a conversation</button>
-      <form class="lead-form" data-lead-form>
-        <h3 data-lead-title>Decode your policy with a specialist</h3>
+      <button
+        class="sticky-toggle"
+        type="button"
+        aria-expanded="true"
+        aria-controls="leadForm"
+        data-collapsed-label="Start a conversation"
+        data-expanded-label="Hide conversation"
+        data-collapsed-icon="+"
+        data-expanded-icon="–"
+      >
+        <span class="toggle-text">
+          <span class="toggle-label" data-toggle-label>Start a conversation</span>
+          <span class="toggle-subtitle">Cashless, coverage &amp; pricing guidance</span>
+        </span>
+        <span class="toggle-icon" data-toggle-icon aria-hidden="true">+</span>
+      </button>
+      <form class="lead-form" id="leadForm" data-lead-form>
+        <h3 data-lead-title>Know your policy coverages with a doctor</h3>
         <div class="lead-fields" data-lead-fields></div>
         <label class="checkbox">
           <input type="checkbox" name="whatsapp_optin" value="yes" />
