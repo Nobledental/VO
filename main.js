@@ -508,6 +508,7 @@ const pricingCTA = $('[data-pricing-cta]');
 const leadTitle = $('[data-lead-title]');
 const leadFields = $('[data-lead-fields]');
 const leadForm = $('[data-lead-form]');
+const stickyLead = $('.sticky-lead');
 const aiSubtitle = $('[data-ai-subtitle]');
 const aiPrompts = $('[data-ai-prompts]');
 const aiModal = $('[data-ai-modal]');
@@ -516,6 +517,31 @@ const aiCloseEls = $$('[data-ai-close]');
 const siteHeader = $('.site-header');
 const nav = $('.primary-nav');
 const navToggle = $('.nav-toggle');
+
+const updateLeadFormFocusables = (expanded) => {
+  if (!leadForm) return;
+  const focusables = $$('input, select, textarea, button, a', leadForm);
+  focusables.forEach((el) => {
+    if (expanded) {
+      if (el.dataset.tabRestore) {
+        if (el.dataset.tabRestore === 'default') {
+          el.removeAttribute('tabindex');
+        } else {
+          el.setAttribute('tabindex', el.dataset.tabRestore);
+        }
+        delete el.dataset.tabRestore;
+      } else {
+        el.removeAttribute('tabindex');
+      }
+    } else {
+      if (!el.dataset.tabRestore) {
+        const existing = el.getAttribute('tabindex');
+        el.dataset.tabRestore = existing ?? 'default';
+      }
+      el.setAttribute('tabindex', '-1');
+    }
+  });
+};
 
 let currentPersona = 'patient';
 
@@ -689,6 +715,9 @@ const renderLeadForm = (config) => {
     .join('');
   observeReveal([leadForm]);
   initLeadFieldListeners();
+  if (stickyLead?.classList.contains('is-collapsed') && !('inert' in leadForm)) {
+    updateLeadFormFocusables(false);
+  }
 };
 
 const renderAI = (config) => {
@@ -1076,12 +1105,87 @@ const initPersonaFromSource = () => {
 };
 
 const initStickyToggle = () => {
-  const toggle = $('.sticky-toggle');
+  if (!stickyLead || !leadForm) return;
+  const toggle = stickyLead.querySelector('.sticky-toggle');
   if (!toggle) return;
+
+  const toggleLabel = toggle.querySelector('[data-toggle-label]');
+  const toggleIcon = toggle.querySelector('[data-toggle-icon]');
+  const collapsedLabel = toggle.dataset.collapsedLabel || 'Start a conversation';
+  const expandedLabel = toggle.dataset.expandedLabel || 'Hide conversation';
+  const collapsedIcon = toggle.dataset.collapsedIcon || '+';
+  const expandedIcon = toggle.dataset.expandedIcon || '–';
+
+  const updateToggleVisuals = (expanded) => {
+    if (toggleLabel) toggleLabel.textContent = expanded ? expandedLabel : collapsedLabel;
+    if (toggleIcon) toggleIcon.textContent = expanded ? expandedIcon : collapsedIcon;
+    toggle.setAttribute('aria-label', expanded ? expandedLabel : collapsedLabel);
+  };
+
+  const focusFirstField = () => {
+    const firstField = leadForm.querySelector('input, select, textarea');
+    if (!firstField) return;
+    setTimeout(() => firstField.focus({ preventScroll: true }), 220);
+  };
+
+  const setExpanded = (expanded, { focusField = false } = {}) => {
+    toggle.setAttribute('aria-expanded', String(expanded));
+    stickyLead.classList.toggle('is-collapsed', !expanded);
+    leadForm.setAttribute('aria-hidden', String(!expanded));
+    if ('inert' in leadForm) {
+      leadForm.inert = !expanded;
+    } else {
+      updateLeadFormFocusables(expanded);
+    }
+    updateToggleVisuals(expanded);
+    if (expanded && focusField) {
+      focusFirstField();
+    }
+  };
+
+  const isExpanded = () => toggle.getAttribute('aria-expanded') === 'true';
+
+  const openLead = ({ focusField = false } = {}) => {
+    if (!isExpanded()) {
+      setExpanded(true, { focusField });
+    } else if (focusField) {
+      focusFirstField();
+    }
+  };
+
+  const closeLead = () => {
+    if (!isExpanded()) return;
+    setExpanded(false);
+  };
+
+  const startExpanded = window.location.hash === '#lead';
+  setExpanded(startExpanded);
+
   toggle.addEventListener('click', () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!expanded));
-    leadForm.classList.toggle('is-collapsed', expanded);
+    if (isExpanded()) {
+      closeLead();
+    } else {
+      openLead({ focusField: true });
+    }
+  });
+
+  const leadLinks = $$('a[href="#lead"]');
+  leadLinks.forEach((link) => {
+    link.addEventListener('click', () => openLead({ focusField: true }));
+  });
+
+  window.addEventListener('hashchange', () => {
+    if (window.location.hash === '#lead') {
+      openLead();
+    }
+  });
+
+  leadForm.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isExpanded()) {
+      event.preventDefault();
+      closeLead();
+      toggle.focus();
+    }
   });
 };
 
