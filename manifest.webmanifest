@@ -6,8 +6,11 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
+  "display_override": ["standalone", "window-controls-overlay"],
+  "orientation": "any",
   "background_color": "#0b1533",
   "theme_color": "#1e3fa1",
+  "categories": ["health", "productivity", "business"],
   "icons": [
     {
       "src": "icons/icon-192.png",
@@ -20,6 +23,27 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "shortcuts": [
+    {
+      "name": "Decode a policy",
+      "short_name": "Decode policy",
+      "description": "Upload a policy and see coverage insights instantly.",
+      "url": "./?utm_source=app-shortcut#lead"
+    },
+    {
+      "name": "Check cashless status",
+      "short_name": "Cashless",
+      "description": "Jump to live visibility dashboards for teams.",
+      "url": "./#visibility"
+    }
+  ],
+  "prefer_related_applications": false
 }
